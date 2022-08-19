@@ -1,35 +1,36 @@
 import { FC } from 'react'
+import { User } from '../../types/User'
 import OverlayingPopup from '../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 
 interface UserPopupProps {
 	isOpened: boolean
 	onClose: () => void
-	id: string
+    user: User
 }
 
-const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose, id }) => {
+const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose, user }) => {
 	return (
-		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={id}>
+		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={user.id}>
 			<div className={styles.container}>
-				<div className={styles.header}>
+				<div className={styles.header} onClick={onClose}>
 					<button className={styles['close-btn']}></button>
 				</div>
 				<div className={styles.body}>
 					<div className={styles['main-block']}>
-						<img className={styles.avatar} />
+						<div className={styles.avatar}>👤</div>
 						<div className={styles.info}>
 							<div className={styles['nickname-container']}>
-								<h1></h1>
+								<h1>{user.nickname}</h1>
 							</div>
 							<div className={styles['status-container']}>
-								<h1></h1>
+								<h1><span>Status:</span> {user.status}</h1>
 							</div>
 							<div className={styles['friends-container']}>
 								<h3>Friends:</h3>
-								<img className={styles['friend-avatar-miniature']} />
-								<img className={styles['friend-avatar-miniature']} />
-								<img className={styles['friend-avatar-miniature']} />
+								<div className={styles['friend-avatar-miniature']}>🧑🏼‍🦱</div>
+								<div className={styles['friend-avatar-miniature']}>👨🏻‍🦱</div>
+								<div className={styles['friend-avatar-miniature']}>👩🏼‍🦰</div>
 								<button className={styles['expand-friends-btn']}></button>
 							</div>
 						</div>
@@ -38,12 +39,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose, id }) => {
 						<h2>Autobiography: </h2>
 						<div className={styles['bio-container']}>
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id
-								quod adipisci nihil repellendus a consequuntur eos ad fugit
-								labore nemo sit eligendi dolore perspiciatis temporibus ducimus
-								suscipit nobis possimus praesentium, sunt quis voluptatum facere
-								maiores, nulla ea. Magni enim similique dolorem aut consequatur
-								neque mollitia, ducimus expedita suscipit. Laboriosam, quos!
+                                {user.bio}
 							</p>
 						</div>
 					</div>
