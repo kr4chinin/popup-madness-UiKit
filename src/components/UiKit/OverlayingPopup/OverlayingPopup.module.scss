@@ -1,0 +1,21 @@
+.container {
+	position: fixed;
+	inset: 0 0 0 0;
+
+	padding: 36px;
+	box-sizing: border-box;
+
+	z-index: 1;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.overlay {
+	position: absolute;
+	inset: 0 0 0 0;
+
+	background-color: rgba(0, 0, 0, 0.6);
+	cursor: pointer;
+}
