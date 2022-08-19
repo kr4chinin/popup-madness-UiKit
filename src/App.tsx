@@ -1,6 +1,9 @@
-import { useEffect } from 'react'
+import { useCreatePortalsDiv } from './hooks/useCreatePortalsDiv'
 
 const App = () => {
+
+    useCreatePortalsDiv()
+
 	return <div>Hello!</div>
 }
 
