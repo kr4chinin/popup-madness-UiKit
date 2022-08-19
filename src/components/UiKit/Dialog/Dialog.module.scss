@@ -1,0 +1,35 @@
+.container {
+	background-color: #f8f8f8f8;
+	width: 350px;
+	max-height: 400px;
+	border-radius: 16px;
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+	padding: 1em;
+
+	z-index: 1;
+
+	.message {
+		font-size: large;
+	}
+
+	.btns-container {
+		display: flex;
+		justify-content: space-between;
+
+		width: inherit;
+		height: fit-content;
+
+		.primary-btn {
+			background-color: lightgreen;
+			min-width: 50px;
+			height: 2em;
+		}
+
+		.secondary-btn {
+			background-color: lightcoral;
+			min-width: 50px;
+			height: 2em;
+		}
+	}
+}
