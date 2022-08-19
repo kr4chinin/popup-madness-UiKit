@@ -6,14 +6,14 @@ interface FullScreenPopupProps {
 	children: React.ReactNode
 	isOpened: boolean
 	onClose: () => void
-    id: string
+	id: string
 }
 
 const FullScreenPopup: FC<FullScreenPopupProps> = ({
 	children,
 	isOpened,
 	onClose,
-    id
+	id
 }) => {
 	if (!isOpened) {
 		return null
