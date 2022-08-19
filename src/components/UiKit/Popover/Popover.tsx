@@ -1,8 +1,8 @@
 import { Placement } from '@popperjs/core'
 import { FC, useState } from 'react'
 import { usePopper } from 'react-popper'
-import { useClickOutside } from '../../hooks/useClickOutside'
-import Portal from '../UiKit/Portal/Portal'
+import { useClickOutside } from '../../../hooks/useClickOutside'
+import Portal from '../Portal/Portal'
 import cl from './Popover.module.scss'
 
 interface PopoverProps {
