@@ -6,6 +6,7 @@ import StatusCancelPopup from '../StatusCancelPopup/StatusCancelPopup'
 import StatusSuccessPopup from '../StatusSuccessPopup/StatusSuccessPopup'
 import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
+import FriendPopover from '../../Popovers/FriendPopover/FriendPopover'
 
 interface UserPopupProps {
 	isOpened: boolean
@@ -49,6 +50,17 @@ const UserPopup: FC<UserPopupProps> = ({
 		setEditStatusError(true)
 	}
 
+	const [referenceElement, setReferenceElement] = useState<any>()
+	const [isFriendPopoverOpen, setIsFriendPopoverOpen] = useState(false)
+
+	function handleFriendPopoverClose() {
+		setIsFriendPopoverOpen(false)
+	}
+
+	function toggleFriendPopover() {
+		setIsFriendPopoverOpen(prev => !prev)
+	}
+
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={user.id}>
 			<EditStatusPopup
@@ -66,6 +78,14 @@ const UserPopup: FC<UserPopupProps> = ({
 			<StatusCancelPopup
 				isOpened={editStatusError}
 				onClose={handleCloseStatusError}
+			/>
+
+			<FriendPopover
+				id="5"
+				isOpen={isFriendPopoverOpen}
+				onClose={handleFriendPopoverClose}
+				referenceElement={referenceElement}
+                friend={user.friends[0]}
 			/>
 
 			<div className={styles.container}>
@@ -89,13 +109,24 @@ const UserPopup: FC<UserPopupProps> = ({
 							</div>
 							<div className={styles['friends-container']}>
 								<h3>Friends:</h3>
-								<div className={styles['friend-avatar-miniature']}>
+								<div
+									data-trigger="popover"
+									ref={setReferenceElement}
+									onClick={toggleFriendPopover}
+									className={styles['friend-avatar-miniature']}
+								>
 									{user.friends[0].avatar}
 								</div>
-								<div className={styles['friend-avatar-miniature']}>
+								<div
+									data-trigger="popover"
+									className={styles['friend-avatar-miniature']}
+								>
 									{user.friends[1].avatar}
 								</div>
-								<div className={styles['friend-avatar-miniature']}>
+								<div
+									data-trigger="popover"
+									className={styles['friend-avatar-miniature']}
+								>
 									{user.friends[2].avatar}
 								</div>
 								<button className={styles['expand-friends-btn']}></button>
