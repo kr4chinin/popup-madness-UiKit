@@ -31,11 +31,17 @@
 			border: 1px solid #ce544b;
 			border-radius: 50%;
             transition: 0.5s;
+            
+            font-size: 10px;
 		}
 
         .close-btn:hover {
             background: #e9847d;
             transform: translateY(1px);
+        }
+
+        .close-btn:hover::before {
+            content: '✕';
         }
 	}
 
@@ -154,11 +160,18 @@
 						border: 1px solid #d69f50;
 						border-radius: 50%;
                         transition: 0.5s;
+                        text-align: center;
+
+                        font-size: 10px;
 					}
 
                     .expand-friends-btn:hover {
                         background: #8cbe86;
                         transform: translateY(1px);
+                    }
+
+                    .expand-friends-btn:hover::before {
+                        content: '☰';
                     }
 				}
 			}
