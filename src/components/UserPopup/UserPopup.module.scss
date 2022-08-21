@@ -18,7 +18,7 @@
 		border-radius: 20px 20px 0px 0px;
 		padding: 18px;
 
-        z-index: 1;
+		z-index: 1;
 
 		display: flex;
 		justify-content: end;
@@ -30,19 +30,19 @@
 			background: #eb6b63;
 			border: 1px solid #ce544b;
 			border-radius: 50%;
-            transition: 0.5s;
-            
-            font-size: 10px;
+			transition: 0.5s;
+
+			font-size: 10px;
 		}
 
-        .close-btn:hover {
-            background: #e9847d;
-            transform: translateY(1px);
-        }
+		.close-btn:hover {
+			background: #e9847d;
+			transform: translateY(1px);
+		}
 
-        .close-btn:hover::before {
-            content: '✕';
-        }
+		.close-btn:hover::before {
+			content: '✕';
+		}
 	}
 
 	.body {
@@ -69,10 +69,10 @@
 				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 				border-radius: 10px;
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 40px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 40px;
 			}
 
 			.info {
@@ -90,19 +90,20 @@
 					box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 					border-radius: 10px;
 
-                    display: flex;
-                    justify-content: flex-start;
-                    padding-left: 0.7em;
-                    padding-right: 0.7em;
-                    align-items: center;
+					display: flex;
+					justify-content: flex-start;
+					padding-left: 0.7em;
+					padding-right: 0.7em;
+					align-items: center;
 
-                    h1 {
-                        font-size: 17px;
-                        font-weight: 400;
-                    }
+					h1 {
+						font-size: 17px;
+						font-weight: 400;
+					}
 				}
 
 				.status-container {
+					cursor: pointer;
 					width: 210px;
 					height: 38px;
 
@@ -110,20 +111,26 @@
 					box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 					border-radius: 10px;
 
-                    display: flex;
-                    justify-content: flex-start;
-                    padding-left: 0.7em;
-                    padding-right: 0.7em;
-                    align-items: center;
+					display: flex;
+					justify-content: flex-start;
+					padding-left: 0.7em;
+					padding-right: 0.7em;
+					align-items: center;
 
-                    h1 {
-                        font-size: 17px;
-                        font-weight: 400;
+					h1 {
+						font-size: 17px;
+						font-weight: 400;
 
-                        span {
-                            color: #6C6C6C;
-                        }
-                    }
+						span {
+							color: #6c6c6c;
+						}
+					}
+
+					transition: 500ms;
+				}
+
+				.status-container:hover {
+					background-color: #d9c4c4;
 				}
 
 				.friends-container {
@@ -146,10 +153,10 @@
 						box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 						border-radius: 5px;
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        font-size: 20px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						font-size: 20px;
 					}
 
 					.expand-friends-btn {
@@ -159,20 +166,20 @@
 						background: #69c25f;
 						border: 1px solid #d69f50;
 						border-radius: 50%;
-                        transition: 0.5s;
-                        text-align: center;
+						transition: 0.5s;
+						text-align: center;
 
-                        font-size: 10px;
+						font-size: 10px;
 					}
 
-                    .expand-friends-btn:hover {
-                        background: #8cbe86;
-                        transform: translateY(1px);
-                    }
+					.expand-friends-btn:hover {
+						background: #8cbe86;
+						transform: translateY(1px);
+					}
 
-                    .expand-friends-btn:hover::before {
-                        content: '☰';
-                    }
+					.expand-friends-btn:hover::before {
+						content: '☰';
+					}
 				}
 			}
 		}
@@ -208,9 +215,9 @@
 				box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 				border-radius: 10px;
 				padding: 18px;
-                color: #6C6C6C;
+				color: #6c6c6c;
 
-                overflow: scroll;
+				overflow: scroll;
 			}
 		}
 	}

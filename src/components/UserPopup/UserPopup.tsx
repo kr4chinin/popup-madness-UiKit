@@ -1,5 +1,10 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
+import { Status } from '../../types/Status'
 import { User } from '../../types/User'
+import EditStatusPopup from '../EditStatusPopup/EditStatusPopup'
+import StatusCancelPopup from '../StatusCancelPopup/StatusCancelPopup'
+import StatusSuccessPopup from '../StatusSuccessPopup/StatusSuccessPopup'
+import Dialog from '../UiKit/Dialog/Dialog'
 import OverlayingPopup from '../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 
@@ -7,11 +12,63 @@ interface UserPopupProps {
 	isOpened: boolean
 	onClose: () => void
 	user: User
+	setUserStatus: (status: Status) => void
 }
 
-const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose, user }) => {
+const UserPopup: FC<UserPopupProps> = ({
+	isOpened,
+	onClose,
+	user,
+	setUserStatus
+}) => {
+	const [showEditStatus, setShowEditStatus] = useState(false)
+
+	function handleShowEditStatus() {
+		setShowEditStatus(true)
+	}
+
+	function handleCloseEditStatus() {
+		setShowEditStatus(false)
+	}
+
+	const [editStatusSuccess, setEditStatusSuccess] = useState(false)
+	const [editStatusError, setEditStatusError] = useState(false)
+
+	function handleCloseStatusSuccess() {
+		setEditStatusSuccess(false)
+	}
+
+	function handleCloseStatusError() {
+		setEditStatusError(false)
+	}
+
+	function handleEditStatusSuccess() {
+		setEditStatusSuccess(true)
+	}
+
+	function handleEditStatusError() {
+		setEditStatusError(true)
+	}
+
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={user.id}>
+			<EditStatusPopup
+				currentStatus={user.status}
+				isOpened={showEditStatus}
+				onClose={handleCloseEditStatus}
+				setUserStatus={setUserStatus}
+				handleEditStatusSuccess={handleEditStatusSuccess}
+				handleEditStatusError={handleEditStatusError}
+			/>
+			<StatusSuccessPopup
+				isOpened={editStatusSuccess}
+				onClose={handleCloseStatusSuccess}
+			/>
+			<StatusCancelPopup
+				isOpened={editStatusError}
+				onClose={handleCloseStatusError}
+			/>
+
 			<div className={styles.container}>
 				<div className={styles.header} onClick={onClose}>
 					<button className={styles['close-btn']}></button>
@@ -23,7 +80,10 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose, user }) => {
 							<div className={styles['nickname-container']}>
 								<h1>{user.nickname}</h1>
 							</div>
-							<div className={styles['status-container']}>
+							<div
+								className={styles['status-container']}
+								onClick={handleShowEditStatus}
+							>
 								<h1>
 									<span>Status:</span> {user.status}
 								</h1>
