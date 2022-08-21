@@ -4,7 +4,6 @@ import { User } from '../../../types/User'
 import EditStatusPopup from '../EditStatusPopup/EditStatusPopup'
 import StatusCancelPopup from '../StatusCancelPopup/StatusCancelPopup'
 import StatusSuccessPopup from '../StatusSuccessPopup/StatusSuccessPopup'
-import Dialog from '../../UiKit/Dialog/Dialog'
 import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 

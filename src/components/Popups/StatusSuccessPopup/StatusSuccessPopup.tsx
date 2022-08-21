@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import Dialog from '../../UiKit/Dialog/Dialog'
 import styles from './StatusSuccessPopup.module.scss'
 

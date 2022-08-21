@@ -5,7 +5,7 @@ import { Status } from './types/Status'
 import { User } from './types/User'
 
 const App = () => {
-	// useCreatePortalsDiv()
+	useCreatePortalsDiv()
 
 	const [isOpened, setIsOpened] = useState(false)
 
