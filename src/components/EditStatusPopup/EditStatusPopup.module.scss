@@ -1,0 +1,26 @@
+.header {
+	font-size: 1.2em;
+	margin-right: 0.5em;
+	color: #6c6c6c;
+}
+
+.status-selector {
+	width: 200px;
+	font-size: 1.1rem;
+	background-color: #d9d9d9;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border: none;
+
+	border-radius: 0.5em;
+	padding: 0.4em;
+
+	transition: 500ms;
+}
+
+.status-selector:focus {
+	outline: none;
+}
+
+.status-selector:hover {
+	background-color: #d9c4c4;
+}
