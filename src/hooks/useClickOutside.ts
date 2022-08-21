@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 export function useClickOutside(ref: HTMLElement, func: () => void) {
 	useEffect(() => {
 		function handleClickOutside(e: any) {
-			if (e.target.type === 'button') {
+			if (e.target?.dataset?.trigger === 'popover') {
 				return
 			}
 			if (ref && !ref.contains(e.target)) {
