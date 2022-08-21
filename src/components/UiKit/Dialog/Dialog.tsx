@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { FC } from 'react'
 import OverlayingPopup from '../OverlayingPopup/OverlayingPopup'
 import styles from './Dialog.module.scss'
@@ -5,29 +6,34 @@ import styles from './Dialog.module.scss'
 interface DialogProps {
 	isOpened: boolean
 	onClose: () => void
-	text: string
 	primaryButtonText: string
 	primaryButtonOnClick: () => void
 	secondaryButtonText?: string
 	secondaryButtonOnClick?: () => void
 	id: string
+	children: React.ReactNode
 }
 
 const Dialog: FC<DialogProps> = ({
 	isOpened,
 	onClose,
-	text,
 	primaryButtonText,
 	primaryButtonOnClick,
 	secondaryButtonText,
 	secondaryButtonOnClick,
-	id
+	id,
+	children
 }) => {
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={id}>
 			<div className={styles.container}>
-				<p className={styles.message}>{text}</p>
-				<div className={styles['btns-container']}>
+				<div className={styles.body}>{children}</div>
+				<div
+					className={classNames(
+						styles['btns-container'],
+						!secondaryButtonOnClick && styles['one-btn']
+					)}
+				>
 					<button
 						hidden={!!!secondaryButtonOnClick && !!!secondaryButtonText}
 						onClick={secondaryButtonOnClick}

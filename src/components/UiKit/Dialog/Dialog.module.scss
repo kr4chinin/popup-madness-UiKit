@@ -1,6 +1,6 @@
 .container {
 	background-color: #f8f8f8f8;
-	width: 350px;
+	min-width: 410px;
 	max-height: 400px;
 	border-radius: 16px;
 	border: 1px solid rgba(0, 0, 0, 0.08);
@@ -9,11 +9,16 @@
 
 	z-index: 1;
 
-	.message {
-		font-size: large;
+	.body {
+		width: inherit;
+		height: fit-content;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 
 	.btns-container {
+		margin-top: 5%;
 		display: flex;
 		justify-content: space-between;
 
@@ -22,14 +27,45 @@
 
 		.primary-btn {
 			background-color: lightgreen;
-			min-width: 50px;
-			height: 2em;
+			width: fit-content;
+			height: fit-content;
+
+			padding: 0.5em;
+			text-align: center;
+
+			border: none;
+			border-radius: 0.5em;
+			box-shadow: 0px 4px 4px rgba(102, 132, 13, 0.25);
+
+			font-size: 1rem;
+			transition: 500ms;
+		}
+
+		.primary-btn:hover {
+			background-color: rgb(107, 235, 107);
 		}
 
 		.secondary-btn {
+			width: fit-content;
+			height: fit-content;
+
 			background-color: lightcoral;
-			min-width: 50px;
-			height: 2em;
+			padding: 0.5em;
+
+			border: none;
+			border-radius: 0.5em;
+			box-shadow: 0px 4px 4px rgba(62, 8, 8, 0.25);
+
+			font-size: 1rem;
+			transition: 500ms;
 		}
+
+		.secondary-btn:hover {
+			background-color: rgb(227, 96, 96);
+		}
+	}
+
+	.btns-container.one-btn {
+		justify-content: center;
 	}
 }

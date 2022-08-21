@@ -15,10 +15,9 @@ const OverlayingPopup: FC<OverlayingPopupProps> = ({
 	isOpened,
 	id
 }) => {
-
-    if (!isOpened) {
-        return null
-    }
+	if (!isOpened) {
+		return null
+	}
 
 	return (
 		<Portal onClose={onClose} id={id}>
@@ -29,10 +28,7 @@ const OverlayingPopup: FC<OverlayingPopupProps> = ({
 					tabIndex={0}
 					onClick={onClose}
 				/>
-                <div className={styles.content}>
-                    {children}
-                </div>
-				
+				<div className={styles.content}>{children}</div>
 			</div>
 		</Portal>
 	)
