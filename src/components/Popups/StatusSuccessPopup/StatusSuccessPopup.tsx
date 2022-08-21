@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import Dialog from '../UiKit/Dialog/Dialog'
+import Dialog from '../../UiKit/Dialog/Dialog'
 import styles from './StatusSuccessPopup.module.scss'
 
 interface StatusSuccessPopupProps {

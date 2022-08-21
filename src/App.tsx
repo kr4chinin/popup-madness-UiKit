@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import UserPopup from './components/UserPopup/UserPopup'
+import UserPopup from './components/Popups/UserPopup/UserPopup'
 import { useCreatePortalsDiv } from './hooks/useCreatePortalsDiv'
 import { Status } from './types/Status'
 import { User } from './types/User'

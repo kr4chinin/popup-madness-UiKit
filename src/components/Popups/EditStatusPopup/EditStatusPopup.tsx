@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
-import { Status } from '../../types/Status'
-import Dialog from '../UiKit/Dialog/Dialog'
+import { Status } from '../../../types/Status'
+import Dialog from '../../UiKit/Dialog/Dialog'
 import styles from './EditStatusPopup.module.scss'
 
 interface EditStatusPopupProps {

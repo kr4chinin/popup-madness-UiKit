@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Dialog from '../UiKit/Dialog/Dialog'
+import Dialog from '../../UiKit/Dialog/Dialog'
 import styles from './StatusCancelPopup.module.scss'
 
 interface StatusCancelPopupProps {
