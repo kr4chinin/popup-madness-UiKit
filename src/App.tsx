@@ -70,17 +70,15 @@ const App = () => {
 	}
 
 	function handleChangeFriends(friends: User[]) {
-		setUser({
-			...user,
-			friends: friends
-		})
+        let newUser = user
+        newUser.friends = friends
+		setUser(newUser)
 	}
 
 	function handleChangeNickname(nickname: string) {
-		setUser({
-			...user,
-			nickname: nickname
-		})
+        let newUser = user
+        newUser.nickname = nickname
+        setUser(newUser)
 	}
 
 	return (

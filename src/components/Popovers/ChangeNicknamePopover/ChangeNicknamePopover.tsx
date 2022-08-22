@@ -30,7 +30,7 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 	})
 
 	function handleApproveChange() {
-		setTimeout(() => handleOpenChangeInfoSuccess(), 0)
+		handleOpenChangeInfoSuccess()
 		handleChangeNickname(newNickname)
 		onClose()
 	}
