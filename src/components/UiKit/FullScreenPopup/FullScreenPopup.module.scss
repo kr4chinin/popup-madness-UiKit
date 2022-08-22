@@ -2,7 +2,61 @@
 	background-color: white;
 	position: absolute;
 	inset: 0 0 0 0;
-	cursor: pointer;
+
+    height: fit-content;
 
 	z-index: 1;
+
+	animation: popup-appearance 500ms;
+
+	.navbar {
+		width: 100vw;
+		height: 60px;
+
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 2em;
+
+		background: #d9d9d9;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+        margin-bottom: 30px;
+
+		.close-container {
+			cursor: pointer;
+
+            border: none;
+			width: 60px;
+			height: 60px;
+			background: #f0f0f0;
+			box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			p {
+				font-size: 3em;
+				transition: 500ms;
+			}
+
+			p:hover {
+				font-size: 3.5em;
+			}
+		}
+
+		.page-title {
+			font-size: 1.3em;
+		}
+	}
+}
+
+@keyframes popup-appearance {
+	0% {
+		transform: scale(0.2);
+	}
+	100% {
+		transform: scale(1);
+	}
 }

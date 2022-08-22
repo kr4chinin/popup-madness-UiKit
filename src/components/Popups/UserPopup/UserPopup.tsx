@@ -7,6 +7,7 @@ import StatusSuccessPopup from '../StatusSuccessPopup/StatusSuccessPopup'
 import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 import FriendPopover from '../../Popovers/FriendPopover/FriendPopover'
+import FriendsListPopup from '../FriendsListPopup/FriendsListPopup'
 
 interface UserPopupProps {
 	isOpened: boolean
@@ -117,6 +118,16 @@ const UserPopup: FC<UserPopupProps> = ({
 		})
 	}
 
+	const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
+
+	function handleCloseFriendsList() {
+		setIsFriendsListOpen(false)
+	}
+
+	function handleOpenFriendsList() {
+		setIsFriendsListOpen(true)
+	}
+
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={user.id}>
 			<EditStatusPopup
@@ -156,6 +167,13 @@ const UserPopup: FC<UserPopupProps> = ({
 				onClose={handleThirdFriendPopoverClose}
 				referenceElement={thirdFriendPopoverRefElement}
 				friend={user.friends[2]}
+			/>
+
+			<FriendsListPopup
+				id="8"
+				isOpened={isFriendsListOpen}
+				onClose={handleCloseFriendsList}
+				friends={user.friends}
 			/>
 
 			<div className={styles.container}>
@@ -200,7 +218,10 @@ const UserPopup: FC<UserPopupProps> = ({
 								>
 									{user.friends[2].avatar}
 								</div>
-								<button className={styles['expand-friends-btn']}></button>
+								<button
+									className={styles['expand-friends-btn']}
+									onClick={handleOpenFriendsList}
+								></button>
 							</div>
 						</div>
 					</div>

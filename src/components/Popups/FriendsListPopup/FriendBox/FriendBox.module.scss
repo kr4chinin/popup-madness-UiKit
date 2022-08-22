@@ -1,0 +1,90 @@
+.container {
+	width: 879px;
+	min-height: 201px;
+
+	background: #ffffff;
+	border: 1px solid #808080;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 20px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	padding: 1.5em;
+
+	.avatar {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 4em;
+
+		width: 160px;
+		height: 160px;
+
+		background: #d9d9d9;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		border-radius: 10px;
+	}
+
+	.info-container {
+		width: 306px;
+		height: 134px;
+
+		background: #f0f0f0;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		border-radius: 10px;
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 15px;
+
+		.nickname-container {
+			width: 261px;
+			height: 40px;
+
+			background: #d9d9d9;
+			border-radius: 5px;
+
+            font-size: 1.2em;
+            padding: 0.4em;
+		}
+
+		.status-container {
+			width: 261px;
+			height: 40px;
+
+			background: #d9d9d9;
+			border-radius: 5px;
+
+            font-size: 1.2em;
+            padding: 0.4em;
+			p {
+				span {
+					color: #6c6c6c;
+				}
+			}
+		}
+	}
+
+	.bio-container {
+		width: 315px;
+		min-height: 134px;
+
+		background: #f0f0f0;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+		border-radius: 10px;
+
+		padding: 1em;
+
+        .view-btn {
+            cursor: pointer;
+            margin-top: 1em;
+            background-color: none;
+            border: none;
+            color: rgb(69, 69, 189);
+        }
+	}
+}
