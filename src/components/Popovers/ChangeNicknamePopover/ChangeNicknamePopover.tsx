@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react'
-import EnterListener from '../../KeyboardListeners/EnterListener'
 import Dialog from '../../UiKit/Dialog/Dialog'
 import Popover from '../../UiKit/Popover/Popover'
 import styles from './ChangeNicknamePopover.module.scss'
