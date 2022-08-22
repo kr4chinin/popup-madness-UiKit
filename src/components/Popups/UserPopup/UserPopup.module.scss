@@ -24,7 +24,7 @@
 		justify-content: end;
 
 		.close-btn {
-            cursor: pointer;
+			cursor: pointer;
 			width: 15px;
 			height: 15px;
 
@@ -147,7 +147,7 @@
 					}
 
 					.friend-avatar-miniature {
-                        cursor: pointer;
+						cursor: pointer;
 						width: 35px;
 						height: 35px;
 
@@ -160,15 +160,15 @@
 						align-items: center;
 						font-size: 20px;
 
-                        transition: 500ms;
+						transition: 500ms;
 					}
 
-                    .friend-avatar-miniature:hover {
-                        transform: scale(1.1);
-                    }
+					.friend-avatar-miniature:hover {
+						transform: scale(1.1);
+					}
 
 					.expand-friends-btn {
-                        cursor: pointer;
+						cursor: pointer;
 						width: 15px;
 						height: 15px;
 

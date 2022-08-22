@@ -48,8 +48,8 @@
 			background: #d9d9d9;
 			border-radius: 5px;
 
-            font-size: 1.2em;
-            padding: 0.4em;
+			font-size: 1.2em;
+			padding: 0.4em;
 		}
 
 		.status-container {
@@ -59,8 +59,8 @@
 			background: #d9d9d9;
 			border-radius: 5px;
 
-            font-size: 1.2em;
-            padding: 0.4em;
+			font-size: 1.2em;
+			padding: 0.4em;
 			p {
 				span {
 					color: #6c6c6c;
@@ -79,12 +79,18 @@
 
 		padding: 1em;
 
-        .view-btn {
-            cursor: pointer;
-            margin-top: 1em;
-            background-color: none;
-            border: none;
-            color: rgb(69, 69, 189);
-        }
+		.view-btn {
+			cursor: pointer;
+			margin-top: 1em;
+			background-color: none;
+			border: none;
+			color: rgb(69, 69, 189);
+		}
 	}
+
+	transition: 500ms;
+}
+
+.container:hover {
+	transform: translateX(-10px);
 }

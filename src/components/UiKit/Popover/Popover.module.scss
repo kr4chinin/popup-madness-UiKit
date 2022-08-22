@@ -16,18 +16,17 @@
 	width: 10px;
 }
 
-
 .popoverEnterActive {
-    opacity: 1;
-    transition: 500ms;
+	opacity: 1;
+	transition: 500ms;
 }
 .popoverEnterDone {
 	opacity: 0;
 }
 .popoverExit {
 	opacity: 1;
-    transition: 500ms;
+	transition: 500ms;
 }
 .popoverExitActive {
-    opacity: 0;
+	opacity: 0;
 }

@@ -5,13 +5,18 @@ import FriendBox from './FriendBox/FriendBox'
 import styles from './FriendsListPopup.module.scss'
 
 interface FriendsListPopupProps {
-    isOpened: boolean
-    onClose: () => void
-    id: string
-    friends: User[]
+	isOpened: boolean
+	onClose: () => void
+	id: string
+	friends: User[]
 }
 
-const FriendsListPopup: FC<FriendsListPopupProps> = ({id, isOpened, onClose, friends}) => {
+const FriendsListPopup: FC<FriendsListPopupProps> = ({
+	id,
+	isOpened,
+	onClose,
+	friends
+}) => {
 	return (
 		<FullScreenPopup
 			id={id}
@@ -20,10 +25,10 @@ const FriendsListPopup: FC<FriendsListPopupProps> = ({id, isOpened, onClose, fri
 			title="Your friends:"
 		>
 			<div className={styles.container}>
-                {friends.map((friend, index) => 
-                    <FriendBox key={index} friend={friend} />
-                )}
-            </div>
+				{friends.map((friend, index) => (
+					<FriendBox key={index} friend={friend} />
+				))}
+			</div>
 		</FullScreenPopup>
 	)
 }
