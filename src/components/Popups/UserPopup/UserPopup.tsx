@@ -8,6 +8,7 @@ import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 import FriendPopover from '../../Popovers/FriendPopover/FriendPopover'
 import FriendsListPopup from '../FriendsListPopup/FriendsListPopup'
+import ChangeNicknamePopover from '../../Popovers/ChangeNicknamePopover/ChangeNicknamePopover'
 
 interface UserPopupProps {
 	isOpened: boolean
@@ -15,6 +16,7 @@ interface UserPopupProps {
 	user: User
 	setUserStatus: (status: Status) => void
 	handleChangeFriends: (newFriends: User[]) => void
+	handleChangeNickname: (nickname: string) => void
 }
 
 const UserPopup: FC<UserPopupProps> = ({
@@ -22,7 +24,8 @@ const UserPopup: FC<UserPopupProps> = ({
 	onClose,
 	user,
 	setUserStatus,
-	handleChangeFriends
+	handleChangeFriends,
+	handleChangeNickname
 }) => {
 	const [showEditStatus, setShowEditStatus] = useState(false)
 
@@ -130,6 +133,18 @@ const UserPopup: FC<UserPopupProps> = ({
 		setIsFriendsListOpen(true)
 	}
 
+	const [isChangeNicknameOpen, setIsChangeNicknameOpen] = useState(false)
+	const [changeNicknameRefElement, setChangeNicknameRefElement] =
+		useState<any>()
+
+	function handleCloseChangeNickname() {
+		setIsChangeNicknameOpen(false)
+	}
+
+    function handleOpenChangeNickname() {
+        setIsChangeNicknameOpen(true)
+    }
+
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={user.id}>
 			<EditStatusPopup
@@ -157,6 +172,14 @@ const UserPopup: FC<UserPopupProps> = ({
 				handleChangeFriends={handleChangeFriends}
 			/>
 
+			<ChangeNicknamePopover
+				isOpen={isChangeNicknameOpen}
+				onClose={handleCloseChangeNickname}
+				nickname={user.nickname}
+				referenceElement={changeNicknameRefElement}
+				handleChangeNickname={handleChangeNickname}
+			/>
+
 			<div className={styles.container}>
 				<div className={styles.header} onClick={onClose}>
 					<button className={styles['close-btn']}></button>
@@ -165,7 +188,11 @@ const UserPopup: FC<UserPopupProps> = ({
 					<div className={styles['main-block']}>
 						<div className={styles.avatar}>{user.avatar}</div>
 						<div className={styles.info}>
-							<div className={styles['nickname-container']}>
+							<div
+								className={styles['nickname-container']}
+								ref={setChangeNicknameRefElement}
+                                onClick={handleOpenChangeNickname}
+							>
 								<h1>{user.nickname}</h1>
 							</div>
 							<div
@@ -180,7 +207,8 @@ const UserPopup: FC<UserPopupProps> = ({
 								<h3>Friends:</h3>
 								{user.friends.length === 0 && (
 									<p className={styles['no-friends-msg']}>
-										You don't have any friends yet! They will appear here once you add them.
+										You don't have any friends yet! They will appear here once
+										you add them.
 									</p>
 								)}
 								{user.friends.length > 0 && (

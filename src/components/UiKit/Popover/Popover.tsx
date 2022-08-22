@@ -9,7 +9,7 @@ interface PopoverProps {
 	isOpen: boolean
 	onClose: () => void
 	referenceElement: any
-	placement?: { placement: Placement }
+	placement?: Placement 
 	children: React.ReactNode
 	id: string
 }
@@ -19,12 +19,13 @@ const Popover: FC<PopoverProps> = ({
 	onClose,
 	referenceElement,
 	children,
-	id
+	id,
+    placement
 }) => {
 	const [popperElement, setPopperElement] = useState<any>()
 
 	const { styles, attributes } = usePopper(referenceElement, popperElement, {
-		placement: 'bottom-end',
+		placement: placement ?? 'bottom-end',
 		modifiers: [
 			{
 				name: 'offset',

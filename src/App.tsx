@@ -76,6 +76,13 @@ const App = () => {
 		})
 	}
 
+	function handleChangeNickname(nickname: string) {
+		setUser({
+			...user,
+			nickname: nickname
+		})
+	}
+
 	return (
 		<div>
 			<button
@@ -86,6 +93,7 @@ const App = () => {
 				Open user pop-up
 			</button>
 			<UserPopup
+				handleChangeNickname={handleChangeNickname}
 				isOpened={isOpened}
 				onClose={onClose}
 				user={user}

@@ -1,0 +1,54 @@
+.input {
+	cursor: pointer;
+	width: 200px;
+	height: 30px;
+
+	font-size: 1.2em;
+	text-align: center;
+
+	background-color: rgb(40, 234, 224);
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+	transition: 500ms;
+}
+
+.input:hover {
+	transform: scale(1.05);
+}
+
+.btns-container {
+    margin-top: 1em;
+	width: 200px;
+	height: fit-content;
+
+	display: flex;
+	justify-content: space-between;
+
+	.approve-btn,
+	.cancel-btn {
+		height: 30px;
+		width: 82px;
+        border-radius: 5px;
+        padding: 0.5em;
+		border: none;
+
+		background-color: lightgreen;
+		transition: 500ms;
+	}
+
+	.cancel-btn {
+		background-color: lightcoral;
+	}
+
+	.approve-btn:hover {
+		background-color: rgb(107, 235, 107);
+		transform: translateY(1px);
+	}
+
+	.cancel-btn:hover {
+		background: #f1928b;
+		transform: translateY(1px);
+	}
+}

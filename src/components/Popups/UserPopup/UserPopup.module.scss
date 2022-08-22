@@ -19,6 +19,7 @@
 		padding: 18px;
 
 		z-index: 1;
+		pointer-events: none;
 
 		display: flex;
 		justify-content: end;
@@ -34,6 +35,7 @@
 			transition: 0.5s;
 
 			font-size: 10px;
+			pointer-events: all;
 		}
 
 		.close-btn:hover {
@@ -84,6 +86,7 @@
 				align-items: center;
 
 				.nickname-container {
+					cursor: pointer;
 					width: 210px;
 					height: 38px;
 
@@ -101,6 +104,12 @@
 						font-size: 17px;
 						font-weight: 400;
 					}
+
+					transition: 500ms;
+				}
+
+				.nickname-container:hover {
+					background-color: #d9c4c4;
 				}
 
 				.status-container {
@@ -139,7 +148,7 @@
 					height: 35px;
 					display: flex;
 					justify-content: flex-start;
-                    gap: 0.6em;
+					gap: 0.6em;
 					align-items: center;
 
 					h3 {
@@ -191,11 +200,11 @@
 						content: '☰';
 					}
 
-                    .no-friends-msg {
-                        font-size: 0.8em;
-                        margin-left: 0.5em;
-                        color: gray;
-                    }
+					.no-friends-msg {
+						font-size: 0.8em;
+						margin-left: 0.5em;
+						color: gray;
+					}
 				}
 			}
 		}
