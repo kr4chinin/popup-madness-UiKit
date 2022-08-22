@@ -180,7 +180,6 @@ const UserPopup: FC<UserPopupProps> = ({
 							<div className={styles['friends-container']}>
 								<h3>Friends:</h3>
 								<div
-									data-trigger="popover"
 									ref={setFirstFriendPopoverRefElement}
 									onClick={toggleFirstFriendPopover}
 									className={styles['friend-avatar-miniature']}
@@ -188,7 +187,6 @@ const UserPopup: FC<UserPopupProps> = ({
 									{user.friends[0].avatar}
 								</div>
 								<div
-									data-trigger="popover"
 									ref={setSecondFriendPopoverRefElement}
 									onClick={toggleSecondFriendPopover}
 									className={styles['friend-avatar-miniature']}
@@ -196,7 +194,6 @@ const UserPopup: FC<UserPopupProps> = ({
 									{user.friends[1].avatar}
 								</div>
 								<div
-									data-trigger="popover"
 									ref={setThirdFriendPopoverRefElement}
 									onClick={toggleThirdFriendPopover}
 									className={styles['friend-avatar-miniature']}

@@ -1,12 +1,16 @@
 import { useEffect } from 'react'
 
-export function useClickOutside(ref: HTMLElement, func: () => void) {
+export function useClickOutside(
+	popperRef: HTMLElement,
+	elementRef: HTMLElement,
+	func: () => void
+) {
 	useEffect(() => {
 		function handleClickOutside(e: any) {
-			if (e.target?.dataset?.trigger === 'popover') {
+			if (e.target === elementRef) {
 				return
 			}
-			if (ref && !ref.contains(e.target)) {
+			if (popperRef && !popperRef.contains(e.target)) {
 				func()
 			}
 		}
@@ -14,5 +18,5 @@ export function useClickOutside(ref: HTMLElement, func: () => void) {
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside)
 		}
-	}, [ref, func])
+	}, [popperRef, elementRef, func])
 }
