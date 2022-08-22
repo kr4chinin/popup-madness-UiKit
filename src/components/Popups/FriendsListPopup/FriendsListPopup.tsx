@@ -9,7 +9,7 @@ interface FriendsListPopupProps {
 	onClose: () => void
 	id: string
 	friends: User[]
-    handleChangeFriends: (newFriends: User[]) => void
+	handleChangeFriends: (newFriends: User[]) => void
 }
 
 const FriendsListPopup: FC<FriendsListPopupProps> = ({
@@ -17,29 +17,28 @@ const FriendsListPopup: FC<FriendsListPopupProps> = ({
 	isOpened,
 	onClose,
 	friends,
-    handleChangeFriends
+	handleChangeFriends
 }) => {
+	const [deleteQueue, setDeleteQueue] = useState<string[]>([])
 
-    const [deleteQueue, setDeleteQueue] = useState<string[]>([])
+	function handleAddToDeleteQueue(id: string) {
+		setDeleteQueue([...deleteQueue, id])
+	}
 
-    function handleAddToDeleteQueue(id: string) {
-        setDeleteQueue([...deleteQueue, id])
-    }
+	function handleClose() {
+		const deleteQueueSet = new Set(deleteQueue)
+		let newFriends: User[] = []
 
-    function handleClose() {
-        const deleteQueueSet = new Set(deleteQueue)
-        let newFriends: User[] = []
-
-        for (let v of friends) {
-            if (deleteQueueSet.has(v.id)) {
-                continue
-            } else {
-                newFriends.push(v)
-            }
-        }
-        handleChangeFriends(newFriends)
-        onClose()
-    }
+		for (let v of friends) {
+			if (deleteQueueSet.has(v.id)) {
+				continue
+			} else {
+				newFriends.push(v)
+			}
+		}
+		handleChangeFriends(newFriends)
+		onClose()
+	}
 
 	return (
 		<FullScreenPopup
@@ -50,7 +49,11 @@ const FriendsListPopup: FC<FriendsListPopupProps> = ({
 		>
 			<div className={styles.container}>
 				{friends.map((friend, index) => (
-					<FriendBox key={index} friend={friend} handleAddToDeleteQueue={handleAddToDeleteQueue}/>
+					<FriendBox
+						key={index}
+						friend={friend}
+						handleAddToDeleteQueue={handleAddToDeleteQueue}
+					/>
 				))}
 			</div>
 		</FullScreenPopup>
