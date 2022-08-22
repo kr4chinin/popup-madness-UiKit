@@ -35,7 +35,7 @@ const Popover: FC<PopoverProps> = ({
 		]
 	})
 
-	useClickOutside(popperElement, onClose)
+	useClickOutside(popperElement, referenceElement, onClose)
 
 	if (!isOpen) {
 		return null

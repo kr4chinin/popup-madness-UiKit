@@ -50,15 +50,71 @@ const UserPopup: FC<UserPopupProps> = ({
 		setEditStatusError(true)
 	}
 
-	const [referenceElement, setReferenceElement] = useState<any>()
-	const [isFriendPopoverOpen, setIsFriendPopoverOpen] = useState(false)
+	const [firstFriendPopoverRefElement, setFirstFriendPopoverRefElement] =
+		useState<any>()
+	const [secondFriendPopoverRefElement, setSecondFriendPopoverRefElement] =
+		useState<any>()
+	const [thirdFriendPopoverRefElement, setThirdFriendPopoverRefElement] =
+		useState<any>()
 
-	function handleFriendPopoverClose() {
-		setIsFriendPopoverOpen(false)
+	const [isFriendsPopoverOpen, setIsFriendsPopoverOpen] = useState({
+		firstFriend: false,
+		secondFriend: false,
+		thirdFriend: false
+	})
+
+	function handleFirstFriendPopoverClose() {
+		setIsFriendsPopoverOpen(prev => {
+			return {
+				...prev,
+				firstFriend: false
+			}
+		})
 	}
 
-	function toggleFriendPopover() {
-		setIsFriendPopoverOpen(prev => !prev)
+	function handleSecondFriendPopoverClose() {
+		setIsFriendsPopoverOpen(prev => {
+			return {
+				...prev,
+				secondFriend: false
+			}
+		})
+	}
+
+	function handleThirdFriendPopoverClose() {
+		setIsFriendsPopoverOpen(prev => {
+			return {
+				...prev,
+				thirdFriend: false
+			}
+		})
+	}
+
+	function toggleFirstFriendPopover() {
+		setIsFriendsPopoverOpen(prev => {
+			return {
+				...prev,
+				firstFriend: !prev.firstFriend
+			}
+		})
+	}
+
+	function toggleSecondFriendPopover() {
+		setIsFriendsPopoverOpen(prev => {
+			return {
+				...prev,
+				secondFriend: !prev.secondFriend
+			}
+		})
+	}
+
+	function toggleThirdFriendPopover() {
+		setIsFriendsPopoverOpen(prev => {
+			return {
+				...prev,
+				thirdFriend: !prev.thirdFriend
+			}
+		})
 	}
 
 	return (
@@ -82,10 +138,24 @@ const UserPopup: FC<UserPopupProps> = ({
 
 			<FriendPopover
 				id="5"
-				isOpen={isFriendPopoverOpen}
-				onClose={handleFriendPopoverClose}
-				referenceElement={referenceElement}
-                friend={user.friends[0]}
+				isOpen={isFriendsPopoverOpen.firstFriend}
+				onClose={handleFirstFriendPopoverClose}
+				referenceElement={firstFriendPopoverRefElement}
+				friend={user.friends[0]}
+			/>
+			<FriendPopover
+				id="6"
+				isOpen={isFriendsPopoverOpen.secondFriend}
+				onClose={handleSecondFriendPopoverClose}
+				referenceElement={secondFriendPopoverRefElement}
+				friend={user.friends[1]}
+			/>
+			<FriendPopover
+				id="7"
+				isOpen={isFriendsPopoverOpen.thirdFriend}
+				onClose={handleThirdFriendPopoverClose}
+				referenceElement={thirdFriendPopoverRefElement}
+				friend={user.friends[2]}
 			/>
 
 			<div className={styles.container}>
@@ -111,20 +181,24 @@ const UserPopup: FC<UserPopupProps> = ({
 								<h3>Friends:</h3>
 								<div
 									data-trigger="popover"
-									ref={setReferenceElement}
-									onClick={toggleFriendPopover}
+									ref={setFirstFriendPopoverRefElement}
+									onClick={toggleFirstFriendPopover}
 									className={styles['friend-avatar-miniature']}
 								>
 									{user.friends[0].avatar}
 								</div>
 								<div
 									data-trigger="popover"
+									ref={setSecondFriendPopoverRefElement}
+									onClick={toggleSecondFriendPopover}
 									className={styles['friend-avatar-miniature']}
 								>
 									{user.friends[1].avatar}
 								</div>
 								<div
 									data-trigger="popover"
+									ref={setThirdFriendPopoverRefElement}
+									onClick={toggleThirdFriendPopover}
 									className={styles['friend-avatar-miniature']}
 								>
 									{user.friends[2].avatar}
