@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react'
+import EnterListener from '../../KeyboardListeners/EnterListener'
 import Dialog from '../../UiKit/Dialog/Dialog'
 import Popover from '../../UiKit/Popover/Popover'
 import styles from './ChangeNicknamePopover.module.scss'
@@ -76,8 +77,6 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 		})
 	}
 
-	const [isOpened, setIsOpened] = useState(false)
-
 	return (
 		<>
 			<Dialog
@@ -113,10 +112,7 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 					onChange={handleChange}
 				/>
 				<div className={styles['btns-container']}>
-					<button
-						className={styles['cancel-btn']}
-						onClick={handleCancelChange}
-					>
+					<button className={styles['cancel-btn']} onClick={handleCancelChange}>
 						Cancel ❌
 					</button>
 					<button

@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { FC } from 'react'
+import EnterListener from '../../KeyboardListeners/EnterListener'
 import OverlayingPopup from '../OverlayingPopup/OverlayingPopup'
 import styles from './Dialog.module.scss'
 
@@ -26,29 +27,31 @@ const Dialog: FC<DialogProps> = ({
 }) => {
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={id}>
-			<div className={styles.container}>
-				<div className={styles.body}>{children}</div>
-				<div
-					className={classNames(
-						styles['btns-container'],
-						!secondaryButtonOnClick && styles['one-btn']
-					)}
-				>
-					<button
-						hidden={!!!secondaryButtonOnClick && !!!secondaryButtonText}
-						onClick={secondaryButtonOnClick}
-						className={styles['secondary-btn']}
+			<EnterListener func={primaryButtonOnClick}>
+				<div className={styles.container}>
+					<div className={styles.body}>{children}</div>
+					<div
+						className={classNames(
+							styles['btns-container'],
+							!secondaryButtonOnClick && styles['one-btn']
+						)}
 					>
-						{secondaryButtonText}
-					</button>
-					<button
-						onClick={primaryButtonOnClick}
-						className={styles['primary-btn']}
-					>
-						{primaryButtonText}
-					</button>
+						<button
+							hidden={!!!secondaryButtonOnClick && !!!secondaryButtonText}
+							onClick={secondaryButtonOnClick}
+							className={styles['secondary-btn']}
+						>
+							{secondaryButtonText}
+						</button>
+						<button
+							onClick={primaryButtonOnClick}
+							className={styles['primary-btn']}
+						>
+							{primaryButtonText}
+						</button>
+					</div>
 				</div>
-			</div>
+			</EnterListener>
 		</OverlayingPopup>
 	)
 }

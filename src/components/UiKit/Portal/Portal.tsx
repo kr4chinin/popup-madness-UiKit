@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import KeyboardListener from '../../KeyboardListener/KeyboardListener'
+import KeyboardListener from '../../KeyboardListeners/EscapeListener'
 
 interface PortalProps {
 	children: React.ReactNode
