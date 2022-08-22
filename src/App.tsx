@@ -69,6 +69,13 @@ const App = () => {
 		setUser(newUser)
 	}
 
+	function handleChangeFriends(friends: User[]) {
+		setUser({
+			...user,
+			friends: friends
+		})
+	}
+
 	return (
 		<div>
 			<button
@@ -83,6 +90,7 @@ const App = () => {
 				onClose={onClose}
 				user={user}
 				setUserStatus={handleSetUserStatus}
+				handleChangeFriends={handleChangeFriends}
 			/>
 		</div>
 	)

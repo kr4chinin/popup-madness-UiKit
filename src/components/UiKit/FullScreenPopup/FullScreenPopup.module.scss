@@ -3,8 +3,8 @@
 	position: absolute;
 	inset: 0 0 0 0;
 
-	height: fit-content;
-	width: fit-content;
+	min-height: 100vh;
+	min-width: 100vw;
 
 	z-index: 1;
 
@@ -50,14 +50,5 @@
 		.page-title {
 			font-size: 1.3em;
 		}
-	}
-}
-
-@keyframes popup-appearance {
-	0% {
-		transform: scale(0.2);
-	}
-	100% {
-		transform: scale(1);
 	}
 }

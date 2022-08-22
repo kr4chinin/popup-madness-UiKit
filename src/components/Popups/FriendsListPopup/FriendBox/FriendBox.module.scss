@@ -1,5 +1,5 @@
 .container {
-	width: 879px;
+	width: 920px;
 	min-height: 201px;
 
 	background: #ffffff;
@@ -88,9 +88,23 @@
 		}
 	}
 
+    .delete-btn {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+
+        font-size: 1.2em;
+        transition: 500ms;
+    }
+
+    .delete-btn:hover {
+        transform: scale(1.2);
+    }
+
 	transition: 500ms;
 }
 
-.container:hover {
-	transform: translateX(-10px);
+.container.deleted {
+    background-color: red;
 }
+

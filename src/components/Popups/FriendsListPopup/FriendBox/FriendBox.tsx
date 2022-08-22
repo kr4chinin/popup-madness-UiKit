@@ -1,12 +1,14 @@
+import classNames from 'classnames'
 import { FC, useState } from 'react'
 import { User } from '../../../../types/User'
 import styles from './FriendBox.module.scss'
 
 interface FriendBoxProps {
 	friend: User
+    handleAddToDeleteQueue: (id: string) => void
 }
 
-const FriendBox: FC<FriendBoxProps> = ({ friend }) => {
+const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue}) => {
 	const [friendBio, setFriendBio] = useState(friend.bio.slice(0, 140))
 
 	function handleShowMore() {
@@ -17,8 +19,15 @@ const FriendBox: FC<FriendBoxProps> = ({ friend }) => {
 		setFriendBio(friend.bio.slice(0, 140))
 	}
 
+    const [willBeDeleted, setWillBeDeleted] = useState(false)
+
+    function handleDelete() {
+        handleAddToDeleteQueue(friend.id)
+        setWillBeDeleted(true)
+    }
+
 	return (
-		<div className={styles.container}>
+		<div className={classNames(styles.container, willBeDeleted && styles.deleted)}>
 			<div className={styles.avatar}>
 				<p>{friend.avatar}</p>
 			</div>
@@ -53,6 +62,9 @@ const FriendBox: FC<FriendBoxProps> = ({ friend }) => {
 					</button>
 				)}
 			</div>
+            <button className={styles['delete-btn']} onClick={handleDelete}>
+                ❌
+            </button>
 		</div>
 	)
 }

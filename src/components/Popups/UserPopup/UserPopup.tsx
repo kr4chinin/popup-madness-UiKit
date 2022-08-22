@@ -14,13 +14,15 @@ interface UserPopupProps {
 	onClose: () => void
 	user: User
 	setUserStatus: (status: Status) => void
+	handleChangeFriends: (newFriends: User[]) => void
 }
 
 const UserPopup: FC<UserPopupProps> = ({
 	isOpened,
 	onClose,
 	user,
-	setUserStatus
+	setUserStatus,
+	handleChangeFriends
 }) => {
 	const [showEditStatus, setShowEditStatus] = useState(false)
 
@@ -147,33 +149,12 @@ const UserPopup: FC<UserPopupProps> = ({
 				onClose={handleCloseStatusError}
 			/>
 
-			<FriendPopover
-				id="5"
-				isOpen={isFriendsPopoverOpen.firstFriend}
-				onClose={handleFirstFriendPopoverClose}
-				referenceElement={firstFriendPopoverRefElement}
-				friend={user.friends[0]}
-			/>
-			<FriendPopover
-				id="6"
-				isOpen={isFriendsPopoverOpen.secondFriend}
-				onClose={handleSecondFriendPopoverClose}
-				referenceElement={secondFriendPopoverRefElement}
-				friend={user.friends[1]}
-			/>
-			<FriendPopover
-				id="7"
-				isOpen={isFriendsPopoverOpen.thirdFriend}
-				onClose={handleThirdFriendPopoverClose}
-				referenceElement={thirdFriendPopoverRefElement}
-				friend={user.friends[2]}
-			/>
-
 			<FriendsListPopup
 				id="8"
 				isOpened={isFriendsListOpen}
 				onClose={handleCloseFriendsList}
 				friends={user.friends}
+				handleChangeFriends={handleChangeFriends}
 			/>
 
 			<div className={styles.container}>
@@ -197,31 +178,73 @@ const UserPopup: FC<UserPopupProps> = ({
 							</div>
 							<div className={styles['friends-container']}>
 								<h3>Friends:</h3>
-								<div
-									ref={setFirstFriendPopoverRefElement}
-									onClick={toggleFirstFriendPopover}
-									className={styles['friend-avatar-miniature']}
-								>
-									{user.friends[0].avatar}
-								</div>
-								<div
-									ref={setSecondFriendPopoverRefElement}
-									onClick={toggleSecondFriendPopover}
-									className={styles['friend-avatar-miniature']}
-								>
-									{user.friends[1].avatar}
-								</div>
-								<div
-									ref={setThirdFriendPopoverRefElement}
-									onClick={toggleThirdFriendPopover}
-									className={styles['friend-avatar-miniature']}
-								>
-									{user.friends[2].avatar}
-								</div>
-								<button
-									className={styles['expand-friends-btn']}
-									onClick={handleOpenFriendsList}
-								></button>
+								{user.friends.length === 0 && (
+									<p className={styles['no-friends-msg']}>
+										You don't have any friends yet! They will appear here once you add them.
+									</p>
+								)}
+								{user.friends.length > 0 && (
+									<>
+										<div
+											ref={setFirstFriendPopoverRefElement}
+											onClick={toggleFirstFriendPopover}
+											className={styles['friend-avatar-miniature']}
+										>
+											{user.friends[0].avatar}
+										</div>
+										<FriendPopover
+											id="5"
+											isOpen={isFriendsPopoverOpen.firstFriend}
+											onClose={handleFirstFriendPopoverClose}
+											referenceElement={firstFriendPopoverRefElement}
+											friend={user.friends[0]}
+										/>
+									</>
+								)}
+
+								{user.friends.length > 1 && (
+									<>
+										<div
+											ref={setSecondFriendPopoverRefElement}
+											onClick={toggleSecondFriendPopover}
+											className={styles['friend-avatar-miniature']}
+										>
+											{user.friends[1].avatar}
+										</div>
+										<FriendPopover
+											id="6"
+											isOpen={isFriendsPopoverOpen.secondFriend}
+											onClose={handleSecondFriendPopoverClose}
+											referenceElement={secondFriendPopoverRefElement}
+											friend={user.friends[1]}
+										/>
+									</>
+								)}
+
+								{user.friends.length > 2 && (
+									<>
+										<div
+											ref={setThirdFriendPopoverRefElement}
+											onClick={toggleThirdFriendPopover}
+											className={styles['friend-avatar-miniature']}
+										>
+											{user.friends[2].avatar}
+										</div>
+										<FriendPopover
+											id="7"
+											isOpen={isFriendsPopoverOpen.thirdFriend}
+											onClose={handleThirdFriendPopoverClose}
+											referenceElement={thirdFriendPopoverRefElement}
+											friend={user.friends[2]}
+										/>
+									</>
+								)}
+								{user.friends.length >= 3 && (
+									<button
+										className={styles['expand-friends-btn']}
+										onClick={handleOpenFriendsList}
+									></button>
+								)}
 							</div>
 						</div>
 					</div>
