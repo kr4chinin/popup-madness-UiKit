@@ -1,13 +1,13 @@
 import React, { FC, useEffect } from 'react'
 
-interface KeyboardListenerProps {
+interface EscapeListenerProps {
 	portals: HTMLElement
 	onClose: () => void
 	id: string
 	children: React.ReactNode
 }
 
-const KeyboardListener: FC<KeyboardListenerProps> = ({
+const EscapeListener: FC<EscapeListenerProps> = ({
 	portals,
 	onClose,
 	id,
@@ -33,4 +33,4 @@ const KeyboardListener: FC<KeyboardListenerProps> = ({
 	return <>{children}</>
 }
 
-export default KeyboardListener
+export default EscapeListener
