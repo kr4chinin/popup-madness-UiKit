@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react'
+import { useUserActions } from '../../../hooks/useUserActions'
 import Dialog from '../../UiKit/Dialog/Dialog'
 import Popover from '../../UiKit/Popover/Popover'
 import styles from './ChangeNicknamePopover.module.scss'
@@ -8,17 +9,17 @@ interface ChangeNicknamePopoverProps {
 	onClose: () => void
 	referenceElement: HTMLElement
 	nickname: string
-	handleChangeNickname: (nickname: string) => void
 }
 
 const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 	isOpen,
 	onClose,
 	referenceElement,
-	nickname,
-	handleChangeNickname
+	nickname
 }) => {
 	const [newNickname, setNewNickname] = useState(nickname)
+
+	const { changeNickname } = useUserActions()
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setNewNickname(e.target.value)
@@ -31,8 +32,8 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 
 	function handleApproveChange() {
 		handleOpenChangeInfoSuccess()
-		handleChangeNickname(newNickname)
 		onClose()
+		changeNickname(newNickname)
 	}
 
 	function handleCancelChange() {

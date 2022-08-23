@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import { useUserActions } from '../../../hooks/useUserActions'
 import { User } from '../../../types/User'
 import FullScreenPopup from '../../UiKit/FullScreenPopup/FullScreenPopup'
 import FriendBox from './FriendBox/FriendBox'
@@ -9,17 +10,17 @@ interface FriendsListPopupProps {
 	onClose: () => void
 	id: string
 	friends: User[]
-	handleChangeFriends: (newFriends: User[]) => void
 }
 
 const FriendsListPopup: FC<FriendsListPopupProps> = ({
 	id,
 	isOpened,
 	onClose,
-	friends,
-	handleChangeFriends
+	friends
 }) => {
 	const [deleteQueue, setDeleteQueue] = useState<string[]>([])
+
+	const { changeFriends } = useUserActions()
 
 	function handleAddToDeleteQueue(id: string) {
 		setDeleteQueue([...deleteQueue, id])
@@ -36,7 +37,7 @@ const FriendsListPopup: FC<FriendsListPopupProps> = ({
 				newFriends.push(v)
 			}
 		}
-		handleChangeFriends(newFriends)
+		changeFriends(newFriends)
 		onClose()
 	}
 

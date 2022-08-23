@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
+import { useUserActions } from '../../../hooks/useUserActions'
 import { Status } from '../../../types/Status'
 import Dialog from '../../UiKit/Dialog/Dialog'
 import styles from './EditStatusPopup.module.scss'
@@ -6,7 +7,6 @@ import styles from './EditStatusPopup.module.scss'
 interface EditStatusPopupProps {
 	isOpened: boolean
 	onClose: () => void
-	setUserStatus: (status: Status) => void
 	currentStatus: Status
 	handleEditStatusSuccess: () => void
 	handleEditStatusError: () => void
@@ -15,19 +15,20 @@ interface EditStatusPopupProps {
 const EditStatusPopup: FC<EditStatusPopupProps> = ({
 	isOpened,
 	onClose,
-	setUserStatus,
 	currentStatus,
 	handleEditStatusSuccess,
 	handleEditStatusError
 }) => {
 	const [newStatus, setNewStatus] = useState<Status>(currentStatus)
 
+	const { changeStatus } = useUserActions()
+
 	function handleChange(e: any) {
 		setNewStatus(e.target.value)
 	}
 
 	function applyNewStatus() {
-		setUserStatus(newStatus)
+		changeStatus(newStatus)
 		onClose()
 		handleEditStatusSuccess()
 	}
