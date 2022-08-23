@@ -6,6 +6,7 @@ import FriendPopover from '../../Popovers/FriendPopover/FriendPopover'
 import FriendsListPopup from '../FriendsListPopup/FriendsListPopup'
 import ChangeNicknamePopover from '../../Popovers/ChangeNicknamePopover/ChangeNicknamePopover'
 import { useAppSelector } from '../../../hooks/redux'
+import ChangeAvatarPopover from '../../Popovers/ChangeAvatarPopover/ChangeAvatarPopover'
 
 interface UserPopupProps {
 	isOpened: boolean
@@ -15,6 +16,9 @@ interface UserPopupProps {
 const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 	type friendNumber = 'firstFriend' | 'secondFriend' | 'thirdFriend'
 
+	const [isChangeAvatarOpen, setIsChangeAvatarOpen] = useState(false)
+	const [changeAvatarRefElement, setChangeAvatarRefElement] = useState<any>()
+
 	const { nickname, status, avatar, friends, id, bio } = useAppSelector(
 		state => state.userSliceReducer
 	)
@@ -23,7 +27,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 	const [changeNicknameRefElement, setChangeNicknameRefElement] =
 		useState<any>()
 
-	const [showEditStatus, setShowEditStatus] = useState(false)
+	const [isChangeStatusOpen, setIsChangeStatusOpen] = useState(false)
 
 	const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
 
@@ -40,11 +44,18 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		thirdFriend: false
 	})
 
-	function handleShowEditStatus() {
-		setShowEditStatus(true)
+	function handleOpenChangeAvatar() {
+		setIsChangeAvatarOpen(true)
 	}
-	function handleCloseEditStatus() {
-		setShowEditStatus(false)
+	function handleCloseChangeAvatar() {
+		setIsChangeAvatarOpen(false)
+	}
+
+	function handleOpenChangeStatus() {
+		setIsChangeStatusOpen(true)
+	}
+	function handleCloseChangeStatus() {
+		setIsChangeStatusOpen(false)
 	}
 
 	function handleFriendPopoverClose(friend: friendNumber) {
@@ -80,13 +91,19 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={id}>
 			<ChangeStatusPopup
-				isOpened={showEditStatus}
-				onClose={handleCloseEditStatus}
+				isOpened={isChangeStatusOpen}
+				onClose={handleCloseChangeStatus}
 			/>
 
 			<FriendsListPopup
 				isOpened={isFriendsListOpen}
 				onClose={handleCloseFriendsList}
+			/>
+
+			<ChangeAvatarPopover
+				isOpen={isChangeAvatarOpen}
+				onClose={handleCloseChangeAvatar}
+				referenceElement={changeAvatarRefElement}
 			/>
 
 			<ChangeNicknamePopover
@@ -100,7 +117,11 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 				</div>
 				<div className={styles.body}>
 					<div className={styles['main-block']}>
-						<div className={styles.avatar}>
+						<div
+							className={styles.avatar}
+							onClick={handleOpenChangeAvatar}
+							ref={setChangeAvatarRefElement}
+						>
 							<span>{avatar}</span>
 						</div>
 						<div className={styles.info}>
@@ -113,7 +134,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 							</div>
 							<div
 								className={styles['status-container']}
-								onClick={handleShowEditStatus}
+								onClick={handleOpenChangeStatus}
 							>
 								<h1>
 									<span>Status:</span> {status}
