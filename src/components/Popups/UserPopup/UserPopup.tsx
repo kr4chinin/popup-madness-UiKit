@@ -61,56 +61,20 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		thirdFriend: false
 	})
 
-	function handleFirstFriendPopoverClose() {
-		setIsFriendsPopoverOpen(prev => {
-			return {
-				...prev,
-				firstFriend: false
-			}
+	type friendNumber = 'firstFriend' | 'secondFriend' | 'thirdFriend'
+
+	function handleFriendPopoverClose(friend: friendNumber) {
+		setIsFriendsPopoverOpen({
+			...isFriendsPopoverOpen,
+			[friend]: false
 		})
 	}
 
-	function handleSecondFriendPopoverClose() {
+	function toggleFriendPopover(friend: friendNumber) {
 		setIsFriendsPopoverOpen(prev => {
 			return {
 				...prev,
-				secondFriend: false
-			}
-		})
-	}
-
-	function handleThirdFriendPopoverClose() {
-		setIsFriendsPopoverOpen(prev => {
-			return {
-				...prev,
-				thirdFriend: false
-			}
-		})
-	}
-
-	function toggleFirstFriendPopover() {
-		setIsFriendsPopoverOpen(prev => {
-			return {
-				...prev,
-				firstFriend: !prev.firstFriend
-			}
-		})
-	}
-
-	function toggleSecondFriendPopover() {
-		setIsFriendsPopoverOpen(prev => {
-			return {
-				...prev,
-				secondFriend: !prev.secondFriend
-			}
-		})
-	}
-
-	function toggleThirdFriendPopover() {
-		setIsFriendsPopoverOpen(prev => {
-			return {
-				...prev,
-				thirdFriend: !prev.thirdFriend
+				[friend]: !prev[friend]
 			}
 		})
 	}
@@ -200,7 +164,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 									<>
 										<div
 											ref={setFirstFriendPopoverRefElement}
-											onClick={toggleFirstFriendPopover}
+											onClick={() => toggleFriendPopover('firstFriend')}
 											className={styles['friend-avatar-miniature']}
 										>
 											{friends[0].avatar}
@@ -208,7 +172,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 										<FriendPopover
 											id="5"
 											isOpen={isFriendsPopoverOpen.firstFriend}
-											onClose={handleFirstFriendPopoverClose}
+											onClose={() => handleFriendPopoverClose('firstFriend')}
 											referenceElement={firstFriendPopoverRefElement}
 											friend={friends[0]}
 										/>
@@ -219,7 +183,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 									<>
 										<div
 											ref={setSecondFriendPopoverRefElement}
-											onClick={toggleSecondFriendPopover}
+											onClick={() => toggleFriendPopover('secondFriend')}
 											className={styles['friend-avatar-miniature']}
 										>
 											{friends[1].avatar}
@@ -227,7 +191,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 										<FriendPopover
 											id="6"
 											isOpen={isFriendsPopoverOpen.secondFriend}
-											onClose={handleSecondFriendPopoverClose}
+											onClose={() => handleFriendPopoverClose('secondFriend')}
 											referenceElement={secondFriendPopoverRefElement}
 											friend={friends[1]}
 										/>
@@ -238,7 +202,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 									<>
 										<div
 											ref={setThirdFriendPopoverRefElement}
-											onClick={toggleThirdFriendPopover}
+											onClick={() => toggleFriendPopover('thirdFriend')}
 											className={styles['friend-avatar-miniature']}
 										>
 											{friends[2].avatar}
@@ -246,7 +210,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 										<FriendPopover
 											id="7"
 											isOpen={isFriendsPopoverOpen.thirdFriend}
-											onClose={handleThirdFriendPopoverClose}
+											onClose={() => handleFriendPopoverClose('thirdFriend')}
 											referenceElement={thirdFriendPopoverRefElement}
 											friend={friends[2]}
 										/>
