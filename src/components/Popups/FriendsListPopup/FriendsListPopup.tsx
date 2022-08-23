@@ -18,10 +18,9 @@ const FriendsListPopup: FC<FriendsListPopupProps> = ({
 	onClose
 }) => {
 	const { friends } = useAppSelector(state => state.userSliceReducer)
+	const { changeFriends } = useUserActions()
 
 	const [deleteQueue, setDeleteQueue] = useState<string[]>([])
-
-	const { changeFriends } = useUserActions()
 
 	function handleAddToDeleteQueue(id: string) {
 		setDeleteQueue([...deleteQueue, id])

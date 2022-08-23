@@ -17,10 +17,9 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 	referenceElement
 }) => {
 	const { nickname } = useAppSelector(state => state.userSliceReducer)
+    const { changeNickname } = useUserActions()
 
 	const [newNickname, setNewNickname] = useState(nickname)
-
-	const { changeNickname } = useUserActions()
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setNewNickname(e.target.value)

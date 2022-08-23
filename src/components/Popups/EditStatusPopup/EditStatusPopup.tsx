@@ -19,10 +19,9 @@ const EditStatusPopup: FC<EditStatusPopupProps> = ({
 	handleEditStatusError
 }) => {
 	const { status } = useAppSelector(state => state.userSliceReducer)
+	const { changeStatus } = useUserActions()
 
 	const [newStatus, setNewStatus] = useState<Status>(status)
-
-	const { changeStatus } = useUserActions()
 
 	function handleChange(e: any) {
 		setNewStatus(e.target.value)
