@@ -17,25 +17,24 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 	referenceElement
 }) => {
 	const { nickname } = useAppSelector(state => state.userSliceReducer)
-    const { changeNickname } = useUserActions()
+	const { changeNickname } = useUserActions()
 
 	const [newNickname, setNewNickname] = useState(nickname)
-
-	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-		setNewNickname(e.target.value)
-	}
 
 	const [isChangeInfoOpen, setIsChangeInfoOpen] = useState({
 		success: false,
 		cancel: false
 	})
 
+	function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+		setNewNickname(e.target.value)
+	}
+
 	function handleApproveChange() {
 		handleOpenChangeInfoSuccess()
 		onClose()
 		changeNickname(newNickname)
 	}
-
 	function handleCancelChange() {
 		handleOpenChangeInfoCancel()
 		onClose()
@@ -49,7 +48,6 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 			}
 		})
 	}
-
 	function handleOpenChangeInfoSuccess() {
 		setIsChangeInfoOpen(prev => {
 			return {
@@ -67,7 +65,6 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 			}
 		})
 	}
-
 	function handleOpenChangeInfoCancel() {
 		setIsChangeInfoOpen(prev => {
 			return {
@@ -79,26 +76,6 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 
 	return (
 		<>
-			<Dialog
-				id="12"
-				isOpened={isChangeInfoOpen.success}
-				onClose={handleCloseChangeInfoSuccess}
-				primaryButtonOnClick={handleCloseChangeInfoSuccess}
-				primaryButtonText="Continue"
-			>
-				<p>
-					🟢 Your name was successfully changed to <b>{newNickname}</b>!
-				</p>
-			</Dialog>
-			<Dialog
-				id="13"
-				isOpened={isChangeInfoOpen.cancel}
-				onClose={handleCloseChangeInfoCancel}
-				primaryButtonOnClick={handleCloseChangeInfoCancel}
-				primaryButtonText="Continue"
-			>
-				<p>🔴 Failed to set new nickname!</p>
-			</Dialog>
 			<Popover
 				id="11"
 				isOpen={isOpen}
@@ -123,6 +100,27 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 					</button>
 				</div>
 			</Popover>
+
+			<Dialog
+				id="12"
+				isOpened={isChangeInfoOpen.success}
+				onClose={handleCloseChangeInfoSuccess}
+				primaryButtonOnClick={handleCloseChangeInfoSuccess}
+				primaryButtonText="Continue"
+			>
+				<p>
+					🟢 Your name was successfully changed to <b>{newNickname}</b>!
+				</p>
+			</Dialog>
+			<Dialog
+				id="13"
+				isOpened={isChangeInfoOpen.cancel}
+				onClose={handleCloseChangeInfoCancel}
+				primaryButtonOnClick={handleCloseChangeInfoCancel}
+				primaryButtonText="Continue"
+			>
+				<p>🔴 Failed to set new nickname!</p>
+			</Dialog>
 		</>
 	)
 }
