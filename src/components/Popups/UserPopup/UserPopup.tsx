@@ -100,7 +100,9 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 				</div>
 				<div className={styles.body}>
 					<div className={styles['main-block']}>
-						<div className={styles.avatar}>{avatar}</div>
+						<div className={styles.avatar}>
+							<span>{avatar}</span>
+						</div>
 						<div className={styles.info}>
 							<div
 								className={styles['nickname-container']}
