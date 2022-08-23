@@ -1,7 +1,5 @@
 import { FC, useState } from 'react'
 import EditStatusPopup from '../EditStatusPopup/EditStatusPopup'
-import StatusCancelPopup from '../StatusCancelPopup/StatusCancelPopup'
-import StatusSuccessPopup from '../StatusSuccessPopup/StatusSuccessPopup'
 import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 import FriendPopover from '../../Popovers/FriendPopover/FriendPopover'
@@ -15,38 +13,19 @@ interface UserPopupProps {
 }
 
 const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
-	const [showEditStatus, setShowEditStatus] = useState(false)
+	type friendNumber = 'firstFriend' | 'secondFriend' | 'thirdFriend'
 
 	const { nickname, status, avatar, friends, id, bio } = useAppSelector(
 		state => state.userSliceReducer
 	)
 
-	function handleShowEditStatus() {
-		setShowEditStatus(true)
-	}
+	const [isChangeNicknameOpen, setIsChangeNicknameOpen] = useState(false)
+	const [changeNicknameRefElement, setChangeNicknameRefElement] =
+		useState<any>()
 
-	function handleCloseEditStatus() {
-		setShowEditStatus(false)
-	}
+	const [showEditStatus, setShowEditStatus] = useState(false)
 
-	const [editStatusSuccess, setEditStatusSuccess] = useState(false)
-	const [editStatusError, setEditStatusError] = useState(false)
-
-	function handleCloseStatusSuccess() {
-		setEditStatusSuccess(false)
-	}
-
-	function handleCloseStatusError() {
-		setEditStatusError(false)
-	}
-
-	function handleEditStatusSuccess() {
-		setEditStatusSuccess(true)
-	}
-
-	function handleEditStatusError() {
-		setEditStatusError(true)
-	}
+	const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
 
 	const [firstFriendPopoverRefElement, setFirstFriendPopoverRefElement] =
 		useState<any>()
@@ -61,7 +40,12 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		thirdFriend: false
 	})
 
-	type friendNumber = 'firstFriend' | 'secondFriend' | 'thirdFriend'
+	function handleShowEditStatus() {
+		setShowEditStatus(true)
+	}
+	function handleCloseEditStatus() {
+		setShowEditStatus(false)
+	}
 
 	function handleFriendPopoverClose(friend: friendNumber) {
 		setIsFriendsPopoverOpen({
@@ -79,24 +63,16 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		})
 	}
 
-	const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
-
 	function handleCloseFriendsList() {
 		setIsFriendsListOpen(false)
 	}
-
 	function handleOpenFriendsList() {
 		setIsFriendsListOpen(true)
 	}
 
-	const [isChangeNicknameOpen, setIsChangeNicknameOpen] = useState(false)
-	const [changeNicknameRefElement, setChangeNicknameRefElement] =
-		useState<any>()
-
 	function handleCloseChangeNickname() {
 		setIsChangeNicknameOpen(false)
 	}
-
 	function handleOpenChangeNickname() {
 		setIsChangeNicknameOpen(true)
 	}
@@ -106,20 +82,9 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 			<EditStatusPopup
 				isOpened={showEditStatus}
 				onClose={handleCloseEditStatus}
-				handleEditStatusSuccess={handleEditStatusSuccess}
-				handleEditStatusError={handleEditStatusError}
-			/>
-			<StatusSuccessPopup
-				isOpened={editStatusSuccess}
-				onClose={handleCloseStatusSuccess}
-			/>
-			<StatusCancelPopup
-				isOpened={editStatusError}
-				onClose={handleCloseStatusError}
 			/>
 
 			<FriendsListPopup
-				id="8"
 				isOpened={isFriendsListOpen}
 				onClose={handleCloseFriendsList}
 			/>

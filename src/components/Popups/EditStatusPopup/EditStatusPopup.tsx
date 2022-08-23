@@ -8,16 +8,9 @@ import styles from './EditStatusPopup.module.scss'
 interface EditStatusPopupProps {
 	isOpened: boolean
 	onClose: () => void
-	handleEditStatusSuccess: () => void
-	handleEditStatusError: () => void
 }
 
-const EditStatusPopup: FC<EditStatusPopupProps> = ({
-	isOpened,
-	onClose,
-	handleEditStatusSuccess,
-	handleEditStatusError
-}) => {
+const EditStatusPopup: FC<EditStatusPopupProps> = ({ isOpened, onClose }) => {
 	const { status } = useAppSelector(state => state.userSliceReducer)
 	const { changeStatus } = useUserActions()
 
@@ -29,8 +22,8 @@ const EditStatusPopup: FC<EditStatusPopupProps> = ({
 
 	function applyNewStatus() {
 		changeStatus(newStatus)
-		onClose()
 		handleEditStatusSuccess()
+		onClose()
 	}
 
 	function cancelNewStatus() {
@@ -38,29 +31,68 @@ const EditStatusPopup: FC<EditStatusPopupProps> = ({
 		onClose()
 	}
 
+	const [editStatusSuccess, setEditStatusSuccess] = useState(false)
+	const [editStatusError, setEditStatusError] = useState(false)
+
+	function handleCloseStatusSuccess() {
+		setEditStatusSuccess(false)
+	}
+	function handleCloseStatusError() {
+		setEditStatusError(false)
+	}
+
+	function handleEditStatusSuccess() {
+		setEditStatusSuccess(true)
+	}
+	function handleEditStatusError() {
+		setEditStatusError(true)
+	}
+
 	return (
-		<Dialog
-			id="2"
-			isOpened={isOpened}
-			onClose={onClose}
-			primaryButtonOnClick={applyNewStatus}
-			primaryButtonText="Apply changes"
-			secondaryButtonOnClick={cancelNewStatus}
-			secondaryButtonText="Cancel"
-		>
-			<p className={styles.header}>Your status: </p>
-			<select
-				className={styles['status-selector']}
-				value={newStatus}
-				onChange={e => handleChange(e)}
+		<>
+			<Dialog
+				id="2"
+				isOpened={isOpened}
+				onClose={onClose}
+				primaryButtonOnClick={applyNewStatus}
+				primaryButtonText="Apply changes"
+				secondaryButtonOnClick={cancelNewStatus}
+				secondaryButtonText="Cancel"
 			>
-				{Object.values(Status).map(value => (
-					<option key={value} value={value}>
-						{value}
-					</option>
-				))}
-			</select>
-		</Dialog>
+				<p className={styles.header}>Your status: </p>
+				<select
+					className={styles['status-selector']}
+					value={newStatus}
+					onChange={e => handleChange(e)}
+				>
+					{Object.values(Status).map(value => (
+						<option key={value} value={value}>
+							{value}
+						</option>
+					))}
+				</select>
+			</Dialog>
+
+			<Dialog
+				id="3"
+				isOpened={editStatusSuccess}
+				onClose={handleCloseStatusSuccess}
+				primaryButtonText="Continue"
+				primaryButtonOnClick={handleCloseStatusSuccess}
+			>
+				<p className={styles.message}>✅ New status applied successfully!</p>
+			</Dialog>
+
+			<Dialog
+				id="4"
+				isOpened={editStatusError}
+				onClose={handleCloseStatusError}
+				primaryButtonText="Continue"
+				primaryButtonOnClick={handleCloseStatusError}
+			>
+				<p className={styles.message}>🚫 Failed to apply new status!</p>
+			</Dialog>
+		</>
 	)
 }
 

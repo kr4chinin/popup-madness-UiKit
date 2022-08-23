@@ -9,14 +9,9 @@ import styles from './FriendsListPopup.module.scss'
 interface FriendsListPopupProps {
 	isOpened: boolean
 	onClose: () => void
-	id: string
 }
 
-const FriendsListPopup: FC<FriendsListPopupProps> = ({
-	id,
-	isOpened,
-	onClose
-}) => {
+const FriendsListPopup: FC<FriendsListPopupProps> = ({ isOpened, onClose }) => {
 	const { friends } = useAppSelector(state => state.userSliceReducer)
 	const { changeFriends } = useUserActions()
 
@@ -43,7 +38,7 @@ const FriendsListPopup: FC<FriendsListPopupProps> = ({
 
 	return (
 		<FullScreenPopup
-			id={id}
+			id="8"
 			isOpened={isOpened}
 			onClose={handleClose}
 			title="Your friends:"
