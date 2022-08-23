@@ -3,18 +3,26 @@ import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
 import { Status } from '../../../types/Status'
 import Dialog from '../../UiKit/Dialog/Dialog'
-import styles from './EditStatusPopup.module.scss'
+import styles from './ChangeStatusPopup.module.scss'
 
-interface EditStatusPopupProps {
+interface ChangeStatusPopupProps {
 	isOpened: boolean
 	onClose: () => void
 }
 
-const EditStatusPopup: FC<EditStatusPopupProps> = ({ isOpened, onClose }) => {
+const ChangeStatusPopup: FC<ChangeStatusPopupProps> = ({
+	isOpened,
+	onClose
+}) => {
 	const { status } = useAppSelector(state => state.userSliceReducer)
 	const { changeStatus } = useUserActions()
 
 	const [newStatus, setNewStatus] = useState<Status>(status)
+
+	const [isStatusChanged, setIsStatusChanged] = useState({
+		success: false,
+		cancel: false
+	})
 
 	function handleChange(e: any) {
 		setNewStatus(e.target.value)
@@ -22,30 +30,34 @@ const EditStatusPopup: FC<EditStatusPopupProps> = ({ isOpened, onClose }) => {
 
 	function applyNewStatus() {
 		changeStatus(newStatus)
-		handleEditStatusSuccess()
+		handleOpenChangeStatusSuccess()
 		onClose()
 	}
-
 	function cancelNewStatus() {
-		handleEditStatusError()
+		handleOpenChangeStatusError()
 		onClose()
 	}
 
-	const [editStatusSuccess, setEditStatusSuccess] = useState(false)
-	const [editStatusError, setEditStatusError] = useState(false)
+	function handleOpenChangeStatusSuccess() {
+		setIsStatusChanged(prev => {
+			return { ...prev, success: true }
+		})
+	}
+	function handleCloseChangeStatusSuccess() {
+		setIsStatusChanged(prev => {
+			return { ...prev, success: false }
+		})
+	}
 
-	function handleCloseStatusSuccess() {
-		setEditStatusSuccess(false)
+	function handleOpenChangeStatusError() {
+		setIsStatusChanged(prev => {
+			return { ...prev, cancel: true }
+		})
 	}
-	function handleCloseStatusError() {
-		setEditStatusError(false)
-	}
-
-	function handleEditStatusSuccess() {
-		setEditStatusSuccess(true)
-	}
-	function handleEditStatusError() {
-		setEditStatusError(true)
+	function handleCloseChangeStatusError() {
+		setIsStatusChanged(prev => {
+			return { ...prev, cancel: false }
+		})
 	}
 
 	return (
@@ -75,20 +87,20 @@ const EditStatusPopup: FC<EditStatusPopupProps> = ({ isOpened, onClose }) => {
 
 			<Dialog
 				id="3"
-				isOpened={editStatusSuccess}
-				onClose={handleCloseStatusSuccess}
+				isOpened={isStatusChanged.success}
+				onClose={handleCloseChangeStatusSuccess}
 				primaryButtonText="Continue"
-				primaryButtonOnClick={handleCloseStatusSuccess}
+				primaryButtonOnClick={handleCloseChangeStatusSuccess}
 			>
 				<p className={styles.message}>✅ New status applied successfully!</p>
 			</Dialog>
 
 			<Dialog
 				id="4"
-				isOpened={editStatusError}
-				onClose={handleCloseStatusError}
+				isOpened={isStatusChanged.cancel}
+				onClose={handleCloseChangeStatusError}
 				primaryButtonText="Continue"
-				primaryButtonOnClick={handleCloseStatusError}
+				primaryButtonOnClick={handleCloseChangeStatusError}
 			>
 				<p className={styles.message}>🚫 Failed to apply new status!</p>
 			</Dialog>
@@ -96,4 +108,4 @@ const EditStatusPopup: FC<EditStatusPopupProps> = ({ isOpened, onClose }) => {
 	)
 }
 
-export default EditStatusPopup
+export default ChangeStatusPopup

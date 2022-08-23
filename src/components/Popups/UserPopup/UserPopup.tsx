@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import EditStatusPopup from '../EditStatusPopup/EditStatusPopup'
+import ChangeStatusPopup from '../EditStatusPopup/ChangeStatusPopup'
 import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 import FriendPopover from '../../Popovers/FriendPopover/FriendPopover'
@@ -79,7 +79,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={id}>
-			<EditStatusPopup
+			<ChangeStatusPopup
 				isOpened={showEditStatus}
 				onClose={handleCloseEditStatus}
 			/>
