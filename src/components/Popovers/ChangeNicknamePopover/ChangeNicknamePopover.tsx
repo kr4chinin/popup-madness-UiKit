@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react'
+import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
 import Dialog from '../../UiKit/Dialog/Dialog'
 import Popover from '../../UiKit/Popover/Popover'
@@ -8,15 +9,15 @@ interface ChangeNicknamePopoverProps {
 	isOpen: boolean
 	onClose: () => void
 	referenceElement: HTMLElement
-	nickname: string
 }
 
 const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 	isOpen,
 	onClose,
-	referenceElement,
-	nickname
+	referenceElement
 }) => {
+	const { nickname } = useAppSelector(state => state.userSliceReducer)
+
 	const [newNickname, setNewNickname] = useState(nickname)
 
 	const { changeNickname } = useUserActions()

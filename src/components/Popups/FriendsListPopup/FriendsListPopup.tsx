@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
 import { User } from '../../../types/User'
 import FullScreenPopup from '../../UiKit/FullScreenPopup/FullScreenPopup'
@@ -9,15 +10,15 @@ interface FriendsListPopupProps {
 	isOpened: boolean
 	onClose: () => void
 	id: string
-	friends: User[]
 }
 
 const FriendsListPopup: FC<FriendsListPopupProps> = ({
 	id,
 	isOpened,
-	onClose,
-	friends
+	onClose
 }) => {
+	const { friends } = useAppSelector(state => state.userSliceReducer)
+
 	const [deleteQueue, setDeleteQueue] = useState<string[]>([])
 
 	const { changeFriends } = useUserActions()

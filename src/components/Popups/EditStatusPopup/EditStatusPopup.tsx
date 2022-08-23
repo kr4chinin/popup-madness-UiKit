@@ -1,4 +1,5 @@
 import { FC, useState } from 'react'
+import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
 import { Status } from '../../../types/Status'
 import Dialog from '../../UiKit/Dialog/Dialog'
@@ -7,7 +8,6 @@ import styles from './EditStatusPopup.module.scss'
 interface EditStatusPopupProps {
 	isOpened: boolean
 	onClose: () => void
-	currentStatus: Status
 	handleEditStatusSuccess: () => void
 	handleEditStatusError: () => void
 }
@@ -15,11 +15,12 @@ interface EditStatusPopupProps {
 const EditStatusPopup: FC<EditStatusPopupProps> = ({
 	isOpened,
 	onClose,
-	currentStatus,
 	handleEditStatusSuccess,
 	handleEditStatusError
 }) => {
-	const [newStatus, setNewStatus] = useState<Status>(currentStatus)
+	const { status } = useAppSelector(state => state.userSliceReducer)
+
+	const [newStatus, setNewStatus] = useState<Status>(status)
 
 	const { changeStatus } = useUserActions()
 
