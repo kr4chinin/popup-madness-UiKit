@@ -3,6 +3,7 @@ import { useState } from 'react'
 import UserPopup from './components/Popups/UserPopup/UserPopup'
 import { useAppSelector } from './hooks/redux'
 import { useCreatePortalsDiv } from './hooks/useCreatePortalsDiv'
+import { useThemeActions } from './hooks/useThemeActions'
 import styles from './styles/App.module.scss'
 
 const App = () => {
@@ -15,6 +16,8 @@ const App = () => {
 	}
 
 	const theme = useAppSelector(state => state.themeSliceReducer)
+
+	const { toggleTheme } = useThemeActions()
 
 	return (
 		<div
@@ -29,6 +32,9 @@ const App = () => {
 			>
 				Open user pop-up
 			</button>
+
+			<button onClick={() => toggleTheme()}>Toggle theme</button>
+
 			<UserPopup isOpened={isOpened} onClose={onClose} />
 		</div>
 	)

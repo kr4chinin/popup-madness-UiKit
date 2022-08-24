@@ -1,18 +1,18 @@
-import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-export type Theme = 'light' | 'dark'
+enum Theme {
+	LIGHT = 'light',
+	DARK = 'dark'
+}
 
-const initialState: Theme = 'dark'
-
-export const themeSlice = createSlice<Theme, SliceCaseReducers<Theme>, string>({
+export const themeSlice = createSlice({
 	name: 'theme',
-	initialState,
+	initialState: 'dark' as Theme,
 	reducers: {
-		setDarkTheme: (theme: Theme) => {
-			theme = 'dark'
-		},
-		setLightTheme: (theme: Theme) => {
-			theme = 'light'
+		toggleTheme: (theme: Theme) => {
+			return theme === Theme.LIGHT
+				? (theme = Theme.DARK)
+				: (theme = Theme.LIGHT)
 		}
 	}
 })
