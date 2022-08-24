@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { FC, useState } from 'react'
+import { useAppSelector } from '../../../../hooks/redux'
 import { User } from '../../../../types/User'
 import Dialog from '../../../UiKit/Dialog/Dialog'
 import styles from './FriendBox.module.scss'
@@ -11,6 +12,8 @@ interface FriendBoxProps {
 
 const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 	const [friendBio, setFriendBio] = useState(friend.bio.slice(0, 140))
+
+	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	function handleShowMore() {
 		setFriendBio(friend.bio)
@@ -71,14 +74,15 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 				primaryButtonText="Continue"
 			>
 				<p>
-					🔔 <b>{friend.nickname}</b> will be removed from your friends list once
-					you close this window!
+					🔔 <b>{friend.nickname}</b> will be removed from your friends list
+					once you close this window!
 				</p>
 			</Dialog>
 			<div
 				className={classNames(
 					styles.container,
-					willBeDeleted && styles.deleted
+					willBeDeleted && styles.deleted,
+					{ [`${styles.dark}`]: theme === 'dark' }
 				)}
 			>
 				<div className={styles.avatar}>

@@ -6,7 +6,7 @@
 	min-height: 100vh;
 	min-width: 100vw;
 
-    overflow: scroll;
+	overflow: scroll;
 
 	z-index: 1;
 
@@ -51,6 +51,21 @@
 
 		.page-title {
 			font-size: 1.3em;
+		}
+	}
+}
+
+.popup.dark {
+	background-color: rgb(23, 21, 21);
+	.navbar {
+		color: rgb(189, 189, 189);
+		background: rgb(34, 47, 47);
+		box-shadow: 0px 2px 2px rgb(23, 36, 36);
+
+		.close-container {
+			color: #54b38e;
+			background-color: #423b3b;
+			box-shadow: 2px 0px 2px rgb(23, 36, 36);
 		}
 	}
 }

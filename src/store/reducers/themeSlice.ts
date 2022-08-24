@@ -1,9 +1,8 @@
-import { State } from '@popperjs/core'
 import { createSlice, SliceCaseReducers } from '@reduxjs/toolkit'
 
 export type Theme = 'light' | 'dark'
 
-const initialState: Theme = 'light'
+const initialState: Theme = 'dark'
 
 export const themeSlice = createSlice<Theme, SliceCaseReducers<Theme>, string>({
 	name: 'theme',
