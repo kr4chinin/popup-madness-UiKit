@@ -19,7 +19,7 @@ const ChangeStatusPopup: FC<ChangeStatusPopupProps> = ({
 
 	const [newStatus, setNewStatus] = useState<Status>(status)
 
-	const [isStatusChanged, setIsStatusChanged] = useState({
+	const [isChangeInfoOpen, setIsChangeInfoOpen] = useState({
 		success: false,
 		cancel: false
 	})
@@ -28,47 +28,59 @@ const ChangeStatusPopup: FC<ChangeStatusPopupProps> = ({
 		setNewStatus(e.target.value)
 	}
 
-	function applyNewStatus() {
+	function handleApproveChange() {
+		handleOpenChangeInfoSuccess()
+		onClose()
 		changeStatus(newStatus)
-		handleOpenChangeStatusSuccess()
+	}
+	function handleCancelChange() {
+		handleOpenChangeInfoCancel()
+		setNewStatus(status)
 		onClose()
 	}
-	function cancelNewStatus() {
-		handleOpenChangeStatusError()
-		onClose()
-	}
 
-	function handleOpenChangeStatusSuccess() {
-		setIsStatusChanged(prev => {
-			return { ...prev, success: true }
+	function handleCloseChangeInfoSuccess() {
+		setIsChangeInfoOpen(prev => {
+			return {
+				...prev,
+				success: false
+			}
 		})
 	}
-	function handleCloseChangeStatusSuccess() {
-		setIsStatusChanged(prev => {
-			return { ...prev, success: false }
-		})
-	}
-
-	function handleOpenChangeStatusError() {
-		setIsStatusChanged(prev => {
-			return { ...prev, cancel: true }
-		})
-	}
-	function handleCloseChangeStatusError() {
-		setIsStatusChanged(prev => {
-			return { ...prev, cancel: false }
+	function handleOpenChangeInfoSuccess() {
+		setIsChangeInfoOpen(prev => {
+			return {
+				...prev,
+				success: true
+			}
 		})
 	}
 
+	function handleCloseChangeInfoCancel() {
+		setIsChangeInfoOpen(prev => {
+			return {
+				...prev,
+				cancel: false
+			}
+		})
+	}
+	function handleOpenChangeInfoCancel() {
+		setIsChangeInfoOpen(prev => {
+			return {
+				...prev,
+				cancel: true
+			}
+		})
+	}
 	return (
 		<>
 			<Dialog
 				id="2"
 				isOpened={isOpened}
 				onClose={onClose}
-				primaryButtonOnClick={applyNewStatus}
+				primaryButtonOnClick={handleApproveChange}
 				primaryButtonText="Apply changes"
-				secondaryButtonOnClick={cancelNewStatus}
+				secondaryButtonOnClick={handleCancelChange}
 				secondaryButtonText="Cancel"
 			>
 				<p className={styles.header}>Your status: </p>
@@ -87,20 +99,20 @@ const ChangeStatusPopup: FC<ChangeStatusPopupProps> = ({
 
 			<Dialog
 				id="3"
-				isOpened={isStatusChanged.success}
-				onClose={handleCloseChangeStatusSuccess}
+				isOpened={isChangeInfoOpen.success}
+				onClose={handleCloseChangeInfoSuccess}
 				primaryButtonText="Continue"
-				primaryButtonOnClick={handleCloseChangeStatusSuccess}
+				primaryButtonOnClick={handleCloseChangeInfoSuccess}
 			>
 				<p className={styles.message}>✅ New status applied successfully!</p>
 			</Dialog>
 
 			<Dialog
 				id="4"
-				isOpened={isStatusChanged.cancel}
-				onClose={handleCloseChangeStatusError}
+				isOpened={isChangeInfoOpen.cancel}
+				onClose={handleCloseChangeInfoCancel}
 				primaryButtonText="Continue"
-				primaryButtonOnClick={handleCloseChangeStatusError}
+				primaryButtonOnClick={handleCloseChangeInfoCancel}
 			>
 				<p className={styles.message}>🚫 Failed to apply new status!</p>
 			</Dialog>

@@ -33,6 +33,17 @@ const ChangeAvatarPopover: FC<ChangeAvatarPopoverProps> = ({
 		setNewAvatar(avatar)
 	}
 
+	function handleApproveChange() {
+		handleOpenChangeInfoSuccess()
+		onClose()
+		changeAvatar(newAvatar)
+	}
+	function handleCancelChange() {
+		handleOpenChangeInfoCancel()
+		setNewAvatar(currentAvatar)
+		onClose()
+	}
+
 	function handleCloseChangeInfoSuccess() {
 		setIsChangeInfoOpen(prev => {
 			return {
@@ -65,16 +76,6 @@ const ChangeAvatarPopover: FC<ChangeAvatarPopoverProps> = ({
 				cancel: true
 			}
 		})
-	}
-
-	function handleApproveChange() {
-		handleOpenChangeInfoSuccess()
-		onClose()
-		changeAvatar(newAvatar)
-	}
-	function handleCancelChange() {
-		handleOpenChangeInfoCancel()
-		onClose()
 	}
 
 	return (

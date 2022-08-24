@@ -37,6 +37,7 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 	}
 	function handleCancelChange() {
 		handleOpenChangeInfoCancel()
+		setNewNickname(nickname)
 		onClose()
 	}
 
