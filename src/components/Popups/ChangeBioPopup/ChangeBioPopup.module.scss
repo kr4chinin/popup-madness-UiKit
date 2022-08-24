@@ -1,0 +1,13 @@
+.textarea {
+	font-size: 1.1rem;
+	width: 400px;
+	height: 300px;
+
+	resize: none;
+
+	overflow: scroll;
+
+	border: 2px solid gray;
+	padding: 0.5em;
+	border-radius: 5px;
+}

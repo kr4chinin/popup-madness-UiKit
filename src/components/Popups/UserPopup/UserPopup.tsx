@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import ChangeStatusPopup from '../EditStatusPopup/ChangeStatusPopup'
+import ChangeStatusPopup from '../ChangeStatusPopup/ChangeStatusPopup'
 import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
 import FriendPopover from '../../Popovers/FriendPopover/FriendPopover'
@@ -7,6 +7,7 @@ import FriendsListPopup from '../FriendsListPopup/FriendsListPopup'
 import ChangeNicknamePopover from '../../Popovers/ChangeNicknamePopover/ChangeNicknamePopover'
 import { useAppSelector } from '../../../hooks/redux'
 import ChangeAvatarPopover from '../../Popovers/ChangeAvatarPopover/ChangeAvatarPopover'
+import ChangeBioPopup from '../ChangeBioPopup/ChangeBioPopup'
 
 interface UserPopupProps {
 	isOpened: boolean
@@ -28,6 +29,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		useState<any>()
 
 	const [isChangeStatusOpen, setIsChangeStatusOpen] = useState(false)
+	const [isChangeBioOpen, setIsChangeBioOpen] = useState(false)
 
 	const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
 
@@ -56,6 +58,13 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 	}
 	function handleCloseChangeStatus() {
 		setIsChangeStatusOpen(false)
+	}
+
+	function handleOpenChangeBio() {
+		setIsChangeBioOpen(true)
+	}
+	function handleCloseChangeBio() {
+		setIsChangeBioOpen(false)
 	}
 
 	function handleFriendPopoverClose(friend: friendNumber) {
@@ -94,10 +103,9 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 				isOpened={isChangeStatusOpen}
 				onClose={handleCloseChangeStatus}
 			/>
-
-			<FriendsListPopup
-				isOpened={isFriendsListOpen}
-				onClose={handleCloseFriendsList}
+			<ChangeBioPopup
+				isOpened={isChangeBioOpen}
+				onClose={handleCloseChangeBio}
 			/>
 
 			<ChangeAvatarPopover
@@ -105,11 +113,15 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 				onClose={handleCloseChangeAvatar}
 				referenceElement={changeAvatarRefElement}
 			/>
-
 			<ChangeNicknamePopover
 				isOpen={isChangeNicknameOpen}
 				onClose={handleCloseChangeNickname}
 				referenceElement={changeNicknameRefElement}
+			/>
+
+			<FriendsListPopup
+				isOpened={isFriendsListOpen}
+				onClose={handleCloseFriendsList}
 			/>
 			<div className={styles.container}>
 				<div className={styles.header} onClick={onClose}>
@@ -215,7 +227,10 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 					</div>
 					<div className={styles['bio-block']}>
 						<h2>Autobiography: </h2>
-						<div className={styles['bio-container']}>
+						<div
+							className={styles['bio-container']}
+							onClick={handleOpenChangeBio}
+						>
 							<p>{bio}</p>
 						</div>
 					</div>

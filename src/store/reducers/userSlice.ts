@@ -68,6 +68,9 @@ export const userSlice = createSlice({
 		},
 		changeAvatar(user: User, action: PayloadAction<Avatar>) {
 			user.avatar = action.payload
+		},
+		changeBio(user: User, action: PayloadAction<string>) {
+			user.bio = action.payload
 		}
 	}
 })
