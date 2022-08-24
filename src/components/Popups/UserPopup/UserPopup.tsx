@@ -8,6 +8,7 @@ import ChangeNicknamePopover from '../../Popovers/ChangeNicknamePopover/ChangeNi
 import { useAppSelector } from '../../../hooks/redux'
 import ChangeAvatarPopover from '../../Popovers/ChangeAvatarPopover/ChangeAvatarPopover'
 import ChangeBioPopup from '../ChangeBioPopup/ChangeBioPopup'
+import classNames from 'classnames'
 
 interface UserPopupProps {
 	isOpened: boolean
@@ -16,6 +17,8 @@ interface UserPopupProps {
 
 const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 	type friendNumber = 'firstFriend' | 'secondFriend' | 'thirdFriend'
+
+	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const [isChangeAvatarOpen, setIsChangeAvatarOpen] = useState(false)
 	const [changeAvatarRefElement, setChangeAvatarRefElement] = useState<any>()
@@ -123,7 +126,11 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 				isOpened={isFriendsListOpen}
 				onClose={handleCloseFriendsList}
 			/>
-			<div className={styles.container}>
+			<div
+				className={classNames(styles.container, {
+					[`${styles.dark}`]: theme === 'dark'
+				})}
+			>
 				<div className={styles.header} onClick={onClose}>
 					<button className={styles['close-btn']}></button>
 				</div>

@@ -282,3 +282,77 @@
 		transform: translateX(0px);
 	}
 }
+
+.dark {
+	.header {
+		background: rgb(29, 49, 49);
+		box-shadow: none;
+	}
+
+	.body {
+		background: rgb(75, 75, 75);
+		border: 1px solid #808080;
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+		.main-block {
+			.avatar {
+				background: #766262;
+				box-shadow: 0px 3px 3px #322a2a;
+			}
+
+			.info {
+				.nickname-container {
+					color: rgb(189, 189, 189);
+					background: #766262;
+					box-shadow: 0px 3px 3px #322a2a;
+				}
+
+				.nickname-container:hover {
+					background-color: #8d7373;
+				}
+
+				.status-container {
+					color: rgb(189, 189, 189);
+					background: #766262;
+					box-shadow: 0px 3px 3px #322a2a;
+
+					h1 {
+						span {
+							color: #54b38e;
+						}
+					}
+				}
+
+				.status-container:hover {
+					background-color: #8d7373;
+				}
+
+				.friends-container {
+					color: rgb(189, 189, 189);
+
+					.friend-avatar-miniature {
+						background: #766262;
+						box-shadow: 0px 3px 3px #322a2a;
+					}
+
+					.no-friends-msg {
+						color: rgb(155, 155, 155);
+					}
+				}
+			}
+		}
+
+		.bio-block {
+			h2 {
+				color: rgb(189, 189, 189);
+			}
+
+			.bio-container {
+				background: #766262;
+				box-shadow: 0px 3px 3px #322a2a;
+
+				color: #54b38e;
+			}
+		}
+	}
+}

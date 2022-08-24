@@ -11,6 +11,8 @@ const App = () => {
 		setIsOpened(false)
 	}
 
+	// const theme = useAppSelector(state => state.themeSliceReducer)
+
 	return (
 		<div>
 			<button

@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import { FC, useState } from 'react'
 import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
@@ -18,6 +19,8 @@ const ChangeStatusPopup: FC<ChangeStatusPopupProps> = ({
 	const { changeStatus } = useUserActions()
 
 	const [newStatus, setNewStatus] = useState<Status>(status)
+
+	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const [isChangeInfoOpen, setIsChangeInfoOpen] = useState({
 		success: false,
@@ -83,9 +86,17 @@ const ChangeStatusPopup: FC<ChangeStatusPopupProps> = ({
 				secondaryButtonOnClick={handleCancelChange}
 				secondaryButtonText="Cancel"
 			>
-				<p className={styles.header}>Your status: </p>
+				<p
+					className={classNames(styles.header, {
+						[`${styles.dark}`]: theme === 'dark'
+					})}
+				>
+					Your status:{' '}
+				</p>
 				<select
-					className={styles['status-selector']}
+					className={classNames(styles['status-selector'], {
+						[`${styles.dark}`]: theme === 'dark'
+					})}
 					value={newStatus}
 					onChange={e => handleChange(e)}
 				>

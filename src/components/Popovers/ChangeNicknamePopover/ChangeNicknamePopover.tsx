@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { FC, useState } from 'react'
 import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
@@ -20,6 +21,8 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 	const { changeNickname } = useUserActions()
 
 	const [newNickname, setNewNickname] = useState(nickname)
+
+	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const [isChangeInfoOpen, setIsChangeInfoOpen] = useState({
 		success: false,
@@ -85,7 +88,9 @@ const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({
 				placement="left"
 			>
 				<input
-					className={styles.input}
+					className={classNames(styles.input, {
+						[styles.dark]: theme === 'dark'
+					})}
 					value={newNickname}
 					onChange={handleChange}
 				/>

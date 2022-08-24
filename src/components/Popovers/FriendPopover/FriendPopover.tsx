@@ -1,4 +1,6 @@
+import classNames from 'classnames'
 import { FC } from 'react'
+import { useAppSelector } from '../../../hooks/redux'
 import { User } from '../../../types/User'
 import Popover from '../../UiKit/Popover/Popover'
 import styles from './FriendPopover.module.scss'
@@ -18,6 +20,8 @@ const FriendPopover: FC<FriendPopoverProps> = ({
 	referenceElement,
 	friend
 }) => {
+	const theme = useAppSelector(state => state.themeSliceReducer)
+
 	return (
 		<Popover
 			isOpen={isOpen}
@@ -25,7 +29,11 @@ const FriendPopover: FC<FriendPopoverProps> = ({
 			id={id}
 			referenceElement={referenceElement}
 		>
-			<div className={styles.container}>
+			<div
+				className={classNames(styles.container, {
+					[`${styles.dark}`]: theme === 'dark'
+				})}
+			>
 				<div className={styles.avatar}>
 					<p>{friend.avatar}</p>
 				</div>

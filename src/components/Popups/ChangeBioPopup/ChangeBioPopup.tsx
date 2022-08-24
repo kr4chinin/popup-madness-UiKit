@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { FC, useState } from 'react'
 import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
@@ -14,6 +15,8 @@ const ChangeBioPopup: FC<ChangeBioPopupProps> = ({ isOpened, onClose }) => {
 	const { changeBio } = useUserActions()
 
 	const [newBio, setNewBio] = useState(bio)
+
+	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const [isChangeInfoOpen, setIsChangeInfoOpen] = useState({
 		success: false,
@@ -81,7 +84,9 @@ const ChangeBioPopup: FC<ChangeBioPopupProps> = ({ isOpened, onClose }) => {
 				secondaryButtonText="Cancel"
 			>
 				<textarea
-					className={styles.textarea}
+					className={classNames(styles.textarea, {
+						[`${styles.dark}`]: theme === 'dark'
+					})}
 					value={newBio}
 					onChange={handleChange}
 				/>

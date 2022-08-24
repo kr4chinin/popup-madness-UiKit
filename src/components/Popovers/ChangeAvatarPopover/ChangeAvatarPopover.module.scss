@@ -15,6 +15,18 @@ h4 {
 	font-size: 2rem;
 }
 
+.select:focus {
+	outline: none;
+}
+
+h4.dark {
+	color: #54b38e;
+}
+
+.select.dark {
+	background-color: rgb(21, 129, 124);
+}
+
 .btns-container {
 	margin-top: 1em;
 	width: 200px;

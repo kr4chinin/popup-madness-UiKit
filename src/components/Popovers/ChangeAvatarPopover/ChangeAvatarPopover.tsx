@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import React, { FC, useState } from 'react'
 import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
@@ -21,6 +22,8 @@ const ChangeAvatarPopover: FC<ChangeAvatarPopoverProps> = ({
 		state => state.userSliceReducer
 	)
 	const { changeAvatar } = useUserActions()
+
+	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const [newAvatar, setNewAvatar] = useState(currentAvatar)
 
@@ -87,8 +90,15 @@ const ChangeAvatarPopover: FC<ChangeAvatarPopoverProps> = ({
 				id="14"
 				placement="left"
 			>
-				<h4>Choose new avatar: </h4>
-				<select multiple className={styles['select']}>
+				<h4 className={theme === 'dark' ? styles.dark : ''}>
+					Choose new avatar:{' '}
+				</h4>
+				<select
+					multiple
+					className={classNames(styles['select'], {
+						[`${styles.dark}`]: theme === 'dark'
+					})}
+				>
 					{Object.values(Avatar).map((avatar, index) => (
 						<option
 							key={index}

@@ -1,6 +1,8 @@
 import { Placement } from '@popperjs/core'
+import classNames from 'classnames'
 import { FC, useState } from 'react'
 import { usePopper } from 'react-popper'
+import { useAppSelector } from '../../../hooks/redux'
 import { useClickOutside } from '../../../hooks/useClickOutside'
 import Portal from '../Portal/Portal'
 import cl from './Popover.module.scss'
@@ -9,7 +11,7 @@ interface PopoverProps {
 	isOpen: boolean
 	onClose: () => void
 	referenceElement: any
-	placement?: Placement 
+	placement?: Placement
 	children: React.ReactNode
 	id: string
 }
@@ -20,9 +22,11 @@ const Popover: FC<PopoverProps> = ({
 	referenceElement,
 	children,
 	id,
-    placement
+	placement
 }) => {
 	const [popperElement, setPopperElement] = useState<any>()
+
+	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const { styles, attributes } = usePopper(referenceElement, popperElement, {
 		placement: placement ?? 'bottom-end',
@@ -46,7 +50,7 @@ const Popover: FC<PopoverProps> = ({
 		<Portal onClose={onClose} id={id}>
 			<div
 				id="popover"
-				className={cl.popover}
+				className={classNames(cl.popover, { [`${cl.dark}`]: theme === 'dark' })}
 				ref={setPopperElement}
 				style={styles.popper}
 				{...attributes.popper}

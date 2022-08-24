@@ -11,3 +11,13 @@
 	padding: 0.5em;
 	border-radius: 5px;
 }
+
+.textarea.dark {
+	color: rgb(189, 189, 189);
+	border: 2px solid rgb(83, 70, 70);
+	background-color: rgb(59, 54, 54);
+}
+
+textarea:focus {
+	outline: none;
+}

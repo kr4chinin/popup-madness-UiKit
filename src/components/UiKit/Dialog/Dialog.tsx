@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { FC } from 'react'
+import { useAppSelector } from '../../../hooks/redux'
 import EnterListener from '../../KeyboardListeners/EnterListener'
 import OverlayingPopup from '../OverlayingPopup/OverlayingPopup'
 import styles from './Dialog.module.scss'
@@ -25,10 +26,16 @@ const Dialog: FC<DialogProps> = ({
 	id,
 	children
 }) => {
+	const theme = useAppSelector(state => state.themeSliceReducer)
+
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={id}>
 			<EnterListener func={primaryButtonOnClick}>
-				<div className={styles.container}>
+				<div
+					className={classNames(styles.container, {
+						[`${styles.dark}`]: theme === 'dark'
+					})}
+				>
 					<div className={styles.body}>{children}</div>
 					<div
 						className={classNames(
