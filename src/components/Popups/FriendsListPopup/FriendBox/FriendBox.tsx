@@ -15,11 +15,15 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 
 	const theme = useAppSelector(state => state.themeSliceReducer)
 
+	const [isExpanded, setIsExpanded] = useState(false)
+
 	function handleShowMore() {
+		setIsExpanded(true)
 		setFriendBio(friend.bio)
 	}
 
 	function handleShowLess() {
+		setIsExpanded(false)
 		setFriendBio(friend.bio.slice(0, 140))
 	}
 
@@ -100,24 +104,17 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 					</div>
 				</div>
 				<div className={styles['bio-container']}>
-					<p>{friend.bio.length > 140 ? friendBio + '...' : friendBio}</p>
-					{friend.bio.length > 140 && friendBio.length === 140 ? (
-						<button
-							hidden={friend.bio.length < 140}
-							className={styles['view-btn']}
-							onClick={handleShowMore}
-						>
-							Show more...
-						</button>
-					) : (
-						<button
-							hidden={friend.bio.length < 140}
-							className={styles['view-btn']}
-							onClick={handleShowLess}
-						>
-							Show less...
-						</button>
-					)}
+					<p>
+						{friend.bio.length > 140
+							? friendBio + `${!isExpanded ? '...' : ''}`
+							: friendBio}
+					</p>
+					<button
+						className={styles['view-btn']}
+						onClick={isExpanded ? handleShowLess : handleShowMore}
+					>
+						{isExpanded ? 'Show less...' : 'Show more...'}
+					</button>
 				</div>
 				<button
 					className={styles['delete-btn']}
