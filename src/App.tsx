@@ -6,22 +6,29 @@ import { useCreatePortalsDiv } from './hooks/useCreatePortalsDiv'
 import { useThemeActions } from './hooks/useThemeActions'
 import styles from './styles/App.module.scss'
 import Toggle from './components/Toggle/Toggle'
+import { ReactComponent as Profile } from './assets/images/profile.svg'
+import { ReactComponent as Info} from './assets/images/info.svg'
 
 const App = () => {
 	useCreatePortalsDiv()
 
 	const [isOpened, setIsOpened] = useState(false)
-
-	function onClose() {
-		setIsOpened(false)
-	}
+	const [isThemeToggled, setIsThemeToggled] = useState(false)
 
 	const theme = useAppSelector(state => state.themeSliceReducer)
-
 	const { toggleTheme } = useThemeActions()
+
+	function handleToggle() {
+		setIsThemeToggled(prev => !prev)
+		toggleTheme()
+	}
 
 	function handleOpenUser() {
 		setIsOpened(true)
+	}
+
+	function onClose() {
+		setIsOpened(false)
 	}
 
 	return (
@@ -30,20 +37,20 @@ const App = () => {
 				[`${styles.dark}`]: theme === 'dark'
 			})}
 		>
-			<h1>Pop-up Madness experimantal UiKit</h1>
+			<h1 className={styles.header}>Pop-up Madness experimantal UiKit</h1>
 
 			<div className={styles.controls}>
 				<button className={styles['open-btn']} onClick={handleOpenUser}>
-					👥
+					<Profile />
 				</button>
 				<a
 					href="/"
 					className={styles['info-btn']}
 					onClick={() => console.log('info')}
 				>
-					ℹ️
+					<Info />
 				</a>
-				<Toggle isToggled={true} toggle={() => console.log(1)} />
+				<Toggle isToggled={isThemeToggled} toggle={handleToggle} />
 			</div>
 
 			<ul>
