@@ -9,7 +9,7 @@ interface FriendPopoverProps {
 	isOpen: boolean
 	onClose: () => void
 	id: string
-	referenceElement: any
+	referenceElement: HTMLElement | null
 	friend: User
 }
 

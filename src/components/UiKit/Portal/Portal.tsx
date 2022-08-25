@@ -20,7 +20,7 @@ const Portal: FC<PortalProps> = ({ children, onClose, id }) => {
 		return () => {
 			portals.removeChild(container)
 		}
-	}, [container, id, onClose, portals])
+	}, [container, portals])
 
 	return ReactDOM.createPortal(
 		<KeyboardListener id={id} onClose={onClose} portals={portals}>

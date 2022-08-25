@@ -9,7 +9,7 @@ import styles from './ChangeNicknamePopover.module.scss'
 interface ChangeNicknamePopoverProps {
 	isOpen: boolean
 	onClose: () => void
-	referenceElement: HTMLElement
+	referenceElement: HTMLElement | null
 }
 
 const ChangeNicknamePopover: FC<ChangeNicknamePopoverProps> = ({

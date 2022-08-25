@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { useAppSelector } from '../../../hooks/redux'
 import { useUserActions } from '../../../hooks/useUserActions'
 import { Status } from '../../../types/Status'
@@ -27,8 +27,8 @@ const ChangeStatusPopup: FC<ChangeStatusPopupProps> = ({
 		cancel: false
 	})
 
-	function handleChange(e: any) {
-		setNewStatus(e.target.value)
+	function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
+		setNewStatus(e.target.value as Status)
 	}
 
 	function handleApproveChange() {

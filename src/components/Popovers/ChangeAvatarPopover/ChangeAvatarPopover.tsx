@@ -10,7 +10,7 @@ import styles from './ChangeAvatarPopover.module.scss'
 interface ChangeAvatarPopoverProps {
 	isOpen: boolean
 	onClose: () => void
-	referenceElement: HTMLElement
+	referenceElement: HTMLElement | null
 }
 
 const ChangeAvatarPopover: FC<ChangeAvatarPopoverProps> = ({

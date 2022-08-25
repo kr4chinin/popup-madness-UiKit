@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useRef, useState } from 'react'
 import ChangeStatusPopup from '../ChangeStatusPopup/ChangeStatusPopup'
 import OverlayingPopup from '../../UiKit/OverlayingPopup/OverlayingPopup'
 import styles from './UserPopup.module.scss'
@@ -21,27 +21,23 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const [isChangeAvatarOpen, setIsChangeAvatarOpen] = useState(false)
-	const [changeAvatarRefElement, setChangeAvatarRefElement] = useState<any>()
+	const changeAvatarRefElement = useRef<HTMLDivElement>(null)
 
 	const { nickname, status, avatar, friends, id, bio } = useAppSelector(
 		state => state.userSliceReducer
 	)
 
 	const [isChangeNicknameOpen, setIsChangeNicknameOpen] = useState(false)
-	const [changeNicknameRefElement, setChangeNicknameRefElement] =
-		useState<any>()
+	const changeNicknameRefElement = useRef<HTMLDivElement>(null)
 
 	const [isChangeStatusOpen, setIsChangeStatusOpen] = useState(false)
 	const [isChangeBioOpen, setIsChangeBioOpen] = useState(false)
 
 	const [isFriendsListOpen, setIsFriendsListOpen] = useState(false)
 
-	const [firstFriendPopoverRefElement, setFirstFriendPopoverRefElement] =
-		useState<any>()
-	const [secondFriendPopoverRefElement, setSecondFriendPopoverRefElement] =
-		useState<any>()
-	const [thirdFriendPopoverRefElement, setThirdFriendPopoverRefElement] =
-		useState<any>()
+	const firstFriendPopoverRefElement = useRef<HTMLDivElement>(null)
+	const secondFriendPopoverRefElement = useRef<HTMLDivElement>(null)
+	const thirdFriendPopoverRefElement = useRef<HTMLDivElement>(null)
 
 	const [isFriendsPopoverOpen, setIsFriendsPopoverOpen] = useState({
 		firstFriend: false,
@@ -49,8 +45,8 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		thirdFriend: false
 	})
 
-	function handleOpenChangeAvatar() {
-		setIsChangeAvatarOpen(true)
+	function toggleAvatarPopover() {
+		setIsChangeAvatarOpen(prev => !prev)
 	}
 	function handleCloseChangeAvatar() {
 		setIsChangeAvatarOpen(false)
@@ -86,18 +82,18 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		})
 	}
 
+    function toggleNicknamePopover() {
+        setIsChangeNicknameOpen(prev => !prev)
+    }
+    function handleCloseChangeNickname() {
+		setIsChangeNicknameOpen(false)
+	}
+
 	function handleCloseFriendsList() {
 		setIsFriendsListOpen(false)
 	}
 	function handleOpenFriendsList() {
 		setIsFriendsListOpen(true)
-	}
-
-	function handleCloseChangeNickname() {
-		setIsChangeNicknameOpen(false)
-	}
-	function handleOpenChangeNickname() {
-		setIsChangeNicknameOpen(true)
 	}
 
 	return (
@@ -114,12 +110,12 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 			<ChangeAvatarPopover
 				isOpen={isChangeAvatarOpen}
 				onClose={handleCloseChangeAvatar}
-				referenceElement={changeAvatarRefElement}
+				referenceElement={changeAvatarRefElement.current}
 			/>
 			<ChangeNicknamePopover
 				isOpen={isChangeNicknameOpen}
 				onClose={handleCloseChangeNickname}
-				referenceElement={changeNicknameRefElement}
+				referenceElement={changeNicknameRefElement.current}
 			/>
 
 			<FriendsListPopup
@@ -138,16 +134,16 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 					<div className={styles['main-block']}>
 						<div
 							className={styles.avatar}
-							onClick={handleOpenChangeAvatar}
-							ref={setChangeAvatarRefElement}
+							onClick={toggleAvatarPopover}
+							ref={changeAvatarRefElement}
 						>
 							<span>{avatar}</span>
 						</div>
 						<div className={styles.info}>
 							<div
 								className={styles['nickname-container']}
-								ref={setChangeNicknameRefElement}
-								onClick={handleOpenChangeNickname}
+								ref={changeNicknameRefElement}
+								onClick={toggleNicknamePopover}
 							>
 								<h1>{nickname}</h1>
 							</div>
@@ -170,7 +166,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 								{friends.length > 0 && (
 									<>
 										<div
-											ref={setFirstFriendPopoverRefElement}
+											ref={firstFriendPopoverRefElement}
 											onClick={() => toggleFriendPopover('firstFriend')}
 											className={styles['friend-avatar-miniature']}
 										>
@@ -180,7 +176,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 											id="5"
 											isOpen={isFriendsPopoverOpen.firstFriend}
 											onClose={() => handleFriendPopoverClose('firstFriend')}
-											referenceElement={firstFriendPopoverRefElement}
+											referenceElement={firstFriendPopoverRefElement.current}
 											friend={friends[0]}
 										/>
 									</>
@@ -189,7 +185,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 								{friends.length > 1 && (
 									<>
 										<div
-											ref={setSecondFriendPopoverRefElement}
+											ref={secondFriendPopoverRefElement}
 											onClick={() => toggleFriendPopover('secondFriend')}
 											className={styles['friend-avatar-miniature']}
 										>
@@ -199,7 +195,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 											id="6"
 											isOpen={isFriendsPopoverOpen.secondFriend}
 											onClose={() => handleFriendPopoverClose('secondFriend')}
-											referenceElement={secondFriendPopoverRefElement}
+											referenceElement={secondFriendPopoverRefElement.current}
 											friend={friends[1]}
 										/>
 									</>
@@ -208,7 +204,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 								{friends.length > 2 && (
 									<>
 										<div
-											ref={setThirdFriendPopoverRefElement}
+											ref={thirdFriendPopoverRefElement}
 											onClick={() => toggleFriendPopover('thirdFriend')}
 											className={styles['friend-avatar-miniature']}
 										>
@@ -218,7 +214,7 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 											id="7"
 											isOpen={isFriendsPopoverOpen.thirdFriend}
 											onClose={() => handleFriendPopoverClose('thirdFriend')}
-											referenceElement={thirdFriendPopoverRefElement}
+											referenceElement={thirdFriendPopoverRefElement.current}
 											friend={friends[2]}
 										/>
 									</>

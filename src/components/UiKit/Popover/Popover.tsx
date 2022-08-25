@@ -10,7 +10,7 @@ import cl from './Popover.module.scss'
 interface PopoverProps {
 	isOpen: boolean
 	onClose: () => void
-	referenceElement: any
+	referenceElement: HTMLElement | null
 	placement?: Placement
 	children: React.ReactNode
 	id: string
@@ -24,7 +24,9 @@ const Popover: FC<PopoverProps> = ({
 	id,
 	placement
 }) => {
-	const [popperElement, setPopperElement] = useState<any>()
+	const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(
+		null
+	)
 
 	const theme = useAppSelector(state => state.themeSliceReducer)
 
