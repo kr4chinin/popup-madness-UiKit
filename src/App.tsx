@@ -44,7 +44,7 @@ const App = () => {
 					<Profile />
 				</button>
 				<a
-					href="/"
+					href="https://github.com/kr4chinin/popup-madness-UiKit"
 					className={styles['info-btn']}
 					onClick={() => console.log('info')}
 				>

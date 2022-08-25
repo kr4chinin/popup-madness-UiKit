@@ -58,6 +58,25 @@
                 background: #898888;
                 transform: scale(1.02);
             }
+
+            &:hover::after {
+                font-family: 'Chakra Petch', sans-serif;
+                font-size: 14px;
+                width: 120px;
+                height: fit-content;
+                position: absolute;
+                top: 110%;
+                text-align: center;
+
+                border-radius: 5px;
+                padding: 0.5em;
+
+                content: 'Open user pop-up';
+                background-color: rgb(150, 144, 144);
+                box-shadow: 1px 2px 2px #0000009b;
+                
+                animation: prompt 800ms;
+            }
 		}
 
 		.info-btn {
@@ -87,6 +106,27 @@
                 transform: scale(1.02);
                 box-shadow: 2px 3px 4px #0000009a;
             }
+
+            &:hover::after {
+                font-family: 'Chakra Petch', sans-serif;
+                font-size: 14px;
+                text-decoration: none;
+                color: black;
+                width: 120px;
+                height: fit-content;
+                position: absolute;
+                top: 110%;
+                text-align: center;
+
+                border-radius: 5px;
+                padding: 0.5em;
+
+                content: 'Open docs page';
+                background-color: rgb(150, 144, 144);
+                box-shadow: 1px 2px 2px #0000009b;
+                
+                animation: prompt 800ms;
+            }
 		}
 	}
     ul {
@@ -108,4 +148,11 @@
     ul {
         color: rgb(189, 189, 189);
     }
+}
+
+@keyframes prompt {
+    0% {opacity: 0; transform: scale(0.5);}
+    50% {opacity: 0; transform: scale(0.5);}
+    75% {opacity: 0; transform: scale(0.5);}
+    100% {opacity: 1; transform: scale(1);}
 }
