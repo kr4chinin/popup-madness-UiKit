@@ -7,7 +7,7 @@ enum Theme {
 
 export const themeSlice = createSlice({
 	name: 'theme',
-	initialState: 'dark' as Theme,
+	initialState: Theme.LIGHT as Theme,
 	reducers: {
 		toggleTheme: (theme: Theme) => {
 			return theme === Theme.LIGHT
