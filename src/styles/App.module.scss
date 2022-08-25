@@ -23,7 +23,7 @@
         padding: 0 20px 0 20px;
 
         background: #cfcfcf;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.388);
 		border-radius: 46px;
 
 		display: flex;
@@ -35,16 +35,28 @@
 			width: 100px;
 			height: 100px;
 			border-radius: 50%;
-			background: #9f8b8b;
+			background: #9c9c9c;
 
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			border: none;
 
+            fill: #524a4a;
+
+            box-shadow: 1px 2px 2px #00000079;
+            transition: 500ms;
+
             svg {
                 width: 50px;
                 height: 50px;
+            }
+
+            &:hover {
+                box-shadow: 2px 3px 4px #0000009a;
+                fill:#433c3c;
+                background: #898888;
+                transform: scale(1.02);
             }
 		}
 
@@ -52,16 +64,28 @@
 			width: 100px;
 			height: 100px;
 			border-radius: 50%;
-			background: #8b919f;
+			background: #52a0c0;
 
 			display: flex;
 			align-items: center;
 			justify-content: center;
 
+            fill: #524a4a;
+
+            box-shadow: 1px 2px 2px #00000079;
+            transition: 500ms;
+
             svg {
                 width: 45px;
                 height: 45px;
                 margin-right: 5px;
+            }
+
+            &:hover {
+                fill:#433c3c;
+                background: #4a91ad;
+                transform: scale(1.02);
+                box-shadow: 2px 3px 4px #0000009a;
             }
 		}
 	}
