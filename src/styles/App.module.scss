@@ -89,13 +89,23 @@
             }
 		}
 	}
-}
+    ul {
+        list-style: none;
+        font-size: 1.2rem;
+    }
 
-ul {
-	list-style: none;
-    font-size: 1.2rem;
+    transition: 500ms;
 }
 
 .container.dark {
 	background-color: #3a3535;
+
+    .header {
+        font-weight: 400;
+        color: rgb(189, 189, 189);
+    }
+
+    ul {
+        color: rgb(189, 189, 189);
+    }
 }
