@@ -110,6 +110,7 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 							: friendBio}
 					</p>
 					<button
+						hidden={friend.bio.length < 140}
 						className={styles['view-btn']}
 						onClick={isExpanded ? handleShowLess : handleShowMore}
 					>
