@@ -54,9 +54,9 @@ const App = () => {
 			</div>
 
 			<ul>
-				<li>&gt; Click the first button to start exploring</li>
-				<li>&gt; Toggle switch to change theme</li>
-				<li>&gt; Click the info button to open docs</li>
+				<li>&gt; Click on the first button to start exploring</li>
+				<li>&gt; Flip the switch to change app theme</li>
+				<li>&gt; Click on the info button to open the docs</li>
 			</ul>
 
 			<UserPopup isOpened={isOpened} onClose={onClose} />
