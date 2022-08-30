@@ -1,28 +1,28 @@
 .toggle {
-    cursor: pointer;
+	cursor: pointer;
 	height: 100px;
 	width: 200px;
 	border-radius: 50px;
 	background-image: linear-gradient(#1ba0d4, #b4e8fd);
 	position: relative;
-    box-shadow: 1px 2px 2px #00000079;
+	box-shadow: 1px 2px 2px #00000079;
 
 	.notch {
 		height: 90px;
 		width: 90px;
 		border-radius: 50%;
-        background-image: linear-gradient(
-            101deg,
-            rgb(254, 254, 169) -0.04%,
-            yellow 98.2%
-        );
+		background-image: linear-gradient(
+			101deg,
+			rgb(254, 254, 169) -0.04%,
+			yellow 98.2%
+		);
 		position: absolute;
 		top: 5px;
 		left: 5px;
 		box-shadow: 0 0 5px yellow;
 		transition: all 0.3s ease;
 
-        z-index: 1;
+		z-index: 1;
 
 		.crater {
 			background: burlywood;
@@ -79,12 +79,12 @@
 		left: 25%;
 	}
 
-    transition: 500ms;
+	transition: 500ms;
 
-    &:hover {
-        transform: scale(1.02);
-        box-shadow: 2px 3px 4px #0000009a;
-    }
+	&:hover {
+		transform: scale(1.02);
+		box-shadow: 2px 3px 4px #0000009a;
+	}
 }
 
 .toggle.night {

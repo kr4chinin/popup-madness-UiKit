@@ -82,10 +82,10 @@ const UserPopup: FC<UserPopupProps> = ({ isOpened, onClose }) => {
 		})
 	}
 
-    function toggleNicknamePopover() {
-        setIsChangeNicknameOpen(prev => !prev)
-    }
-    function handleCloseChangeNickname() {
+	function toggleNicknamePopover() {
+		setIsChangeNicknameOpen(prev => !prev)
+	}
+	function handleCloseChangeNickname() {
 		setIsChangeNicknameOpen(false)
 	}
 

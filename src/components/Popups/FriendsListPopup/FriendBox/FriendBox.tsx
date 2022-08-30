@@ -16,12 +16,12 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 	const theme = useAppSelector(state => state.themeSliceReducer)
 
 	const [isDeleteFriendInfoOpen, setIsDeleteFriendInfoOpen] = useState(false)
-    const [isDeleteFriendConfirmOpen, setIsDeleteFriendConfirmOpen] =
-    useState(false)
+	const [isDeleteFriendConfirmOpen, setIsDeleteFriendConfirmOpen] =
+		useState(false)
 
-    const [willBeDeleted, setWillBeDeleted] = useState(false)
+	const [willBeDeleted, setWillBeDeleted] = useState(false)
 
-    const [isExpanded, setIsExpanded] = useState(false)
+	const [isExpanded, setIsExpanded] = useState(false)
 
 	function handleShowMore() {
 		setIsExpanded(true)
@@ -46,9 +46,9 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 		setIsDeleteFriendConfirmOpen(false)
 	}
 
-    function handleOpenDeleteFriendInfo() {
-        setIsDeleteFriendInfoOpen(true)
-    }
+	function handleOpenDeleteFriendInfo() {
+		setIsDeleteFriendInfoOpen(true)
+	}
 	function handleCloseDeleteFriendInfo() {
 		setIsDeleteFriendInfoOpen(false)
 	}

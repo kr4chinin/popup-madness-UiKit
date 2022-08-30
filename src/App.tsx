@@ -7,7 +7,7 @@ import { useThemeActions } from './hooks/useThemeActions'
 import styles from './styles/App.module.scss'
 import Toggle from './components/Toggle/Toggle'
 import { ReactComponent as Profile } from './assets/images/profile.svg'
-import { ReactComponent as Info} from './assets/images/info.svg'
+import { ReactComponent as Info } from './assets/images/info.svg'
 
 const App = () => {
 	useCreatePortalsDiv()
