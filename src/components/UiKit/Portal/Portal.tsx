@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
-import KeyboardListener from '../../KeyboardListeners/EscapeListener'
+import EscapeListener from '../../KeyboardListeners/EscapeListener'
 
 interface PortalProps {
 	children: React.ReactNode
@@ -23,9 +23,9 @@ const Portal: FC<PortalProps> = ({ children, onClose, id }) => {
 	}, [container, portals])
 
 	return ReactDOM.createPortal(
-		<KeyboardListener id={id} onClose={onClose} portals={portals}>
+		<EscapeListener id={id} onClose={onClose} portals={portals}>
 			{children}
-		</KeyboardListener>,
+		</EscapeListener>,
 		container
 	)
 }

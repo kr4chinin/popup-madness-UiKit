@@ -16,7 +16,6 @@ const EscapeListener: FC<EscapeListenerProps> = ({
 	useEffect(() => {
 		const closeOnEscapeKey = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
-				const portals = document.getElementById('portals')!
 				if (
 					portals.children &&
 					portals.children[portals.children.length - 1]?.id === id
