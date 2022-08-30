@@ -100,7 +100,7 @@ const ChangeBioPopup: FC<ChangeBioPopupProps> = ({ isOpened, onClose }) => {
 				primaryButtonOnClick={handleCloseChangeInfoSuccess}
 			>
 				<p className={styles.message}>
-					✅ You biography was successfully changed!
+					✅ You <b>biography</b> was successfully changed!
 				</p>
 			</Dialog>
 
@@ -111,7 +111,7 @@ const ChangeBioPopup: FC<ChangeBioPopupProps> = ({ isOpened, onClose }) => {
 				primaryButtonText="Continue"
 				primaryButtonOnClick={handleCloseChangeInfoCancel}
 			>
-				<p className={styles.message}>🚫 Failed to edit your biography!</p>
+				<p className={styles.message}>🚫 Failed to edit your <b>biography</b>!</p>
 			</Dialog>
 		</>
 	)
