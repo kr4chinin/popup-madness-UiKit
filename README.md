@@ -21,7 +21,7 @@ This application contains not only custom **pop-up / pop-over UiKit** but also a
 
 <img width="500" alt="Overlaying pop-up" src="https://user-images.githubusercontent.com/103210607/187422022-32dca6ff-5e0f-4447-804b-8a1e84e39d0a.png">
 
-* ```<Dialog />``` it's a variety of ```<OverlayingPopup />``` but it has one or two buttons, it can be used for interactions with user like a **system dialog window**:
+* ```<Dialog />``` is a variety of ```<OverlayingPopup />``` but it has one or two action buttons, it can be used for interactions with user like a **system dialog window**:
 
 <img width="500" alt="Dialog with two buttons" src="https://user-images.githubusercontent.com/103210607/187422581-5c320107-9ea5-4c7b-b898-6f7a1d761293.png">
 
