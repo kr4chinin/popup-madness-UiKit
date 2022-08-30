@@ -15,41 +15,41 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 
 	const theme = useAppSelector(state => state.themeSliceReducer)
 
-	const [isExpanded, setIsExpanded] = useState(false)
+	const [isDeleteFriendInfoOpen, setIsDeleteFriendInfoOpen] = useState(false)
+    const [isDeleteFriendConfirmOpen, setIsDeleteFriendConfirmOpen] =
+    useState(false)
+
+    const [willBeDeleted, setWillBeDeleted] = useState(false)
+
+    const [isExpanded, setIsExpanded] = useState(false)
 
 	function handleShowMore() {
 		setIsExpanded(true)
 		setFriendBio(friend.bio)
 	}
-
 	function handleShowLess() {
 		setIsExpanded(false)
 		setFriendBio(friend.bio.slice(0, 140))
 	}
 
-	const [willBeDeleted, setWillBeDeleted] = useState(false)
-
 	function handleDelete() {
 		handleAddToDeleteQueue(friend.id)
 		setWillBeDeleted(true)
 		handleCloseDeleteFriendConfirm()
-		setTimeout(() => setIsDeleteFriendInfoOpen(true), 0)
+		handleOpenDeleteFriendInfo()
 	}
-
-	const [isDeleteFriendConfirmOpen, setIsDeleteFriendConfirmOpen] =
-		useState(false)
 
 	function handleOpenDeleteFriendConfirm() {
 		setIsDeleteFriendConfirmOpen(true)
 	}
-
 	function handleCloseDeleteFriendConfirm() {
 		setIsDeleteFriendConfirmOpen(false)
 	}
 
-	const [isDeleteFriendInfoOpen, setIsDeleteFriendInfoOpen] = useState(false)
-
-	function handleClosedDeleteFriendInfo() {
+    function handleOpenDeleteFriendInfo() {
+        setIsDeleteFriendInfoOpen(true)
+    }
+	function handleCloseDeleteFriendInfo() {
 		setIsDeleteFriendInfoOpen(false)
 	}
 
@@ -73,8 +73,8 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 			<Dialog
 				id="10"
 				isOpened={isDeleteFriendInfoOpen}
-				onClose={handleClosedDeleteFriendInfo}
-				primaryButtonOnClick={handleClosedDeleteFriendInfo}
+				onClose={handleCloseDeleteFriendInfo}
+				primaryButtonOnClick={handleCloseDeleteFriendInfo}
 				primaryButtonText="Continue"
 			>
 				<p>
@@ -82,6 +82,7 @@ const FriendBox: FC<FriendBoxProps> = ({ friend, handleAddToDeleteQueue }) => {
 					once you close this window!
 				</p>
 			</Dialog>
+
 			<div
 				className={classNames(
 					styles.container,

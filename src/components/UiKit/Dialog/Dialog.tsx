@@ -1,7 +1,6 @@
 import classNames from 'classnames'
 import { FC } from 'react'
 import { useAppSelector } from '../../../hooks/redux'
-import EnterListener from '../../KeyboardListeners/EnterListener'
 import OverlayingPopup from '../OverlayingPopup/OverlayingPopup'
 import styles from './Dialog.module.scss'
 
@@ -30,35 +29,33 @@ const Dialog: FC<DialogProps> = ({
 
 	return (
 		<OverlayingPopup isOpened={isOpened} onClose={onClose} id={id}>
-			<EnterListener func={primaryButtonOnClick}>
+			<div
+				className={classNames(styles.container, {
+					[`${styles.dark}`]: theme === 'dark'
+				})}
+			>
+				<div className={styles.body}>{children}</div>
 				<div
-					className={classNames(styles.container, {
-						[`${styles.dark}`]: theme === 'dark'
-					})}
+					className={classNames(
+						styles['btns-container'],
+						!secondaryButtonOnClick && styles['one-btn']
+					)}
 				>
-					<div className={styles.body}>{children}</div>
-					<div
-						className={classNames(
-							styles['btns-container'],
-							!secondaryButtonOnClick && styles['one-btn']
-						)}
+					<button
+						hidden={!!!secondaryButtonOnClick && !!!secondaryButtonText}
+						onClick={secondaryButtonOnClick}
+						className={styles['secondary-btn']}
 					>
-						<button
-							hidden={!!!secondaryButtonOnClick && !!!secondaryButtonText}
-							onClick={secondaryButtonOnClick}
-							className={styles['secondary-btn']}
-						>
-							{secondaryButtonText}
-						</button>
-						<button
-							onClick={primaryButtonOnClick}
-							className={styles['primary-btn']}
-						>
-							{primaryButtonText}
-						</button>
-					</div>
+						{secondaryButtonText}
+					</button>
+					<button
+						onClick={primaryButtonOnClick}
+						className={styles['primary-btn']}
+					>
+						{primaryButtonText}
+					</button>
 				</div>
-			</EnterListener>
+			</div>
 		</OverlayingPopup>
 	)
 }
